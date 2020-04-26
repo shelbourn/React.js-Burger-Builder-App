@@ -1,4 +1,4 @@
-# React | Hamburger Builder App
+# React | Burger Builder App
 *Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hooks, React Router, and other goodies!*
 
 </br>
