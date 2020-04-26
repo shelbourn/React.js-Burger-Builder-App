@@ -1,4 +1,4 @@
-# :hamburger::hamburger::hamburger:   React | Burger Builder App   :hamburger::hamburger::hamburger:
+# :hamburger::hamburger::hamburger: React | Burger Builder App :hamburger::hamburger::hamburger:
 
 _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hooks, React Router, and other goodies!_
 
@@ -39,7 +39,7 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 
 **2. Burger Builder UI/UX Plan**
 
-- App Component
+- App Component (class-based, stateful or stateless)
   - Layout
     - Toolbar
       - Drawer Toggle Button/Gesture
@@ -48,7 +48,7 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
     - Side Drawer
     - Background Element
     - {props.children} _(will be used to wrap separate "pages" via React Router)_
-      - Burger Builder (page)
+      - Burger Builder (page, stateful component, container)
         - Builder Controls
           - Build Control
           - Build Control
@@ -62,3 +62,17 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
           - ...
         - Modal Component (reusable)
           - {props.children}
+
+**3. Burger Builder State Management Plan**
+
+- State (Located within Burger Builder Component)
+  - Ingredients
+    - JS Object
+    - {meat: number, cheese: number, lettuce: number, ...}
+  - Customer's stage in purchase process
+    - JS Object
+    - {purchased: bool}
+  - Pricing
+    - JS Object
+    - {totalPrice: number}
+- _Additional states may be added to other components as necessary_
