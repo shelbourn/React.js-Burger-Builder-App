@@ -1,10 +1,11 @@
-# React | Burger Builder App
+# :hamburger::hamburger::hamburger:   React | Burger Builder App   :hamburger::hamburger::hamburger:
 
 _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hooks, React Router, and other goodies!_
 
 </br>
-<p align="center">
-  <img src="https://reactjs.org/logo-og.png" alt="React Logo" width="800">
+<p>
+  <img src="https://reactjs.org/logo-og.png" alt="React Logo" width="500">
+  <img src="https://vignette.wikia.nocookie.net/ronaldmcdonald/images/0/0f/Imgres.jpeg/revision/latest?cb=20150625050506" alt="The Hamburgler" width="350">
 </p>
 </br>
 
