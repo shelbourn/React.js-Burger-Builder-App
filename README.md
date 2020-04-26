@@ -28,7 +28,7 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 
 ## Tasks
 
-1. Plan out the React App
+**1. Plan out the React App**
 
 - Develop the component tree & component structure
 - Develop a plan for the application state, what data will be managed & how it will be sourced, how the state will be managed
