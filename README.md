@@ -13,6 +13,7 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 - JavaScript
 - React.js
 - JSX
+- HTML (via JSX)
 - React Hooks
 - React Router
 - React Redux
@@ -34,3 +35,29 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 - Develop the component tree & component structure
 - Develop a plan for the application state, what data will be managed & how it will be sourced, how the state will be managed
 - Develop a plan for what components & what containers are necessary
+
+**2. Burger Builder UI/UX Plan**
+
+- App Component
+  - Layout
+    - Toolbar
+      - Drawer Toggle Button/Gesture
+      - Logo
+      - Navigation Items
+    - Side Drawer
+    - Background Element
+    - {props.children} _(will be used to wrap separate "pages" via React Router)_
+      - Burger Builder (page)
+        - Builder Controls
+          - Build Control
+          - Build Control
+          - Build Control
+          - ...
+          - Order Button
+        - Burger Preview
+          - Ingredients
+          - Ingredients
+          - Ingredients
+          - ...
+        - Modal Component (reusable)
+          - {props.children}
