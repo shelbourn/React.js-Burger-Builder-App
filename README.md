@@ -8,10 +8,11 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 </p>
 </br>
 
-**This app will use the following technologies & methodologies (not an inclusive list and I will update as the app progresses):**
+## Technologies & Methodologies Used (not inclusive)
 
 - JavaScript
 - React.js
+- JSX
 - React Hooks
 - React Router
 - React Redux
