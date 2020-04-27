@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function App() {
-	return (
-		<div>
-			<h1>This is a test</h1>
-		</div>
-	)
+//? Components in the 'components' folder are 'dumb' or stateless components
+//* Components in the 'containers' folder are 'smart' or stateful components
+
+class App extends Component {
+	render() {
+		return <div></div>
+	}
 }
-
 export default App

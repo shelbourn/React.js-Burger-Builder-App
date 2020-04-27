@@ -40,13 +40,13 @@ _Fun little Hamburger Builder app using React, Redux, React Hooks, Lifecycle Hoo
 **2. Burger Builder UI/UX Plan**
 
 - App Component (class-based, stateful or stateless)
-  - Layout
+  - Layout (wrapper component)
     - Toolbar
       - Drawer Toggle Button/Gesture
       - Logo
       - Navigation Items
     - Side Drawer
-    - Background Element
+    - Backdrop Element
     - {props.children} _(will be used to wrap separate "pages" via React Router)_
       - Burger Builder (page, stateful component, container)
         - Builder Controls
