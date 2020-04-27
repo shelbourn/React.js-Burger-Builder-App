@@ -28,6 +28,8 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 //? array of ingredients for each ingredient with the appropriate number of elements
 //? according to the number of each ingredient that is ordered
 //? 2 cheeses ordered = cheese array has length 2 (2 elements)
+//? Basically this allows us to know the object key (what type of ingredient needed)
+//? and the object value (how many of each ingredient is needed)
 
 const burger = (props) => {
 	const transformedIngredients = Object.keys(props.ingredients).map(
