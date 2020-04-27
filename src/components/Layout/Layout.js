@@ -1,12 +1,12 @@
 import React from 'react'
 import Aux from '../../hoc/Auxiliary'
+import styles from './Layout.module.css'
 
-//% Import all custom components as Pascal case even though in their
-//% respective component files their consts are declared in 
-//% camelCase
-
-const layout = (props) => (<div>Toolbar, SideDrawer, Backdrop</div>
-<main>
-{props.children}
-</main>
+const layout = (props) => (
+	<Aux>
+		<div>Toolbar, SideDrawer, Backdrop (Placeholder)</div>
+		<main className={styles.Content}>{props.children}</main>
+	</Aux>
 )
+
+export default layout
