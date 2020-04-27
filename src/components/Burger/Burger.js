@@ -24,6 +24,11 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 //* Each <BurgerIngredient> must have a unique key so that it can be
 //* individually referenced in other code
 
+//? transformedIngredients maps the ingredients object into an
+//? array of ingredients for each ingredient with the appropriate number of elements
+//? according to the number of each ingredient that is ordered
+//? 2 cheeses ordered = cheese array has length 2 (2 elements)
+
 const burger = (props) => {
 	const transformedIngredients = Object.keys(props.ingredients).map(
 		(ingredKey) => {
