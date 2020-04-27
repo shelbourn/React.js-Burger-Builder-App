@@ -1,5 +1,6 @@
-//! All Aux does is return the children components which are accepted
-//! as props
+/***
+ * ? STATELESS WRAPPER HOC FOR RETURNING ADJACENT JSX ELEMENTS
+ */
 
 const aux = (props) => props.children
 
