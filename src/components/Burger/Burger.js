@@ -9,6 +9,7 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 
 //* Object.keys() is a built-in method that takes an object
 //* and returns an array of the keys in a key/value pair
+//* It DOES NOT return the values in the key/value pairs
 
 //% .array() method returns a created array of the argument length
 //% Below: [...Array(props.ingredient[ingredKey])] returns a new array
@@ -22,6 +23,7 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 
 //* Each <BurgerIngredient> must have a unique key so that it can be
 //* individually referenced in other code
+
 const burger = (props) => {
 	const transformedIngredients = Object.keys(props.ingredients).map(
 		(ingredKey) => {
