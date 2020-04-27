@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import Aux from '../../hoc/Auxiliary'
+import Burger from '../../components/Burger/Burger'
 
 /***
- * ? STATEFUL COMPONENT FOR BURGER BUILDER FUNCTIONALITY
+ * ? STATEFUL COMPONENT/CONTAINER FOR BURGER BUILDER FUNCTIONALITY
  */
 
 class BurgerBuilder extends Component {
 	render() {
 		return (
 			<Aux>
-				<div>Burger (Placeholder)</div>
+				<Burger />
 				<div>Build Controls (Placeholder)</div>
 			</Aux>
 		)
