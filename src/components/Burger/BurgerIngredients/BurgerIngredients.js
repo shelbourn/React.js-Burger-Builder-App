@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 /***
  * ? STATELESS COMPONENT RENDERING BURGER INGREDIENTS TO THE SCREEN
+ * * EDIT: WAS A FUNCTIONAL COMPONENT, BUT HAS NOW BEEN CONVERTED TO A CLASS-BASED
  */
 
 class BurgerIngredient extends Component {
