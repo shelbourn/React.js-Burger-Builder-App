@@ -27,6 +27,7 @@ const buildControls = (props) => (
 				isDisabled={props.disabled[ctrl.type]}
 			/>
 		))}
+		<button className={styles.OrderButton}>SUBMIT ORDER</button>
 	</div>
 )
 
