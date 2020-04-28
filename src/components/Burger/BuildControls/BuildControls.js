@@ -9,9 +9,15 @@ const controls = [
 	{ label: 'Lettuce', type: 'lettuce' },
 ]
 
+//% .toFixed(integer) converts a floating point decimal to a fixed scale
+//% that is user-defined
+
 const buildControls = (props) => (
 	<div className={styles.BuildControls}>
-		<p> Current Price: {props.price}</p>
+		<p>
+			{' '}
+			Current Price: <strong>${props.price.toFixed(2)}</strong>
+		</p>
 		{controls.map((ctrl) => (
 			<BuildControl
 				key={ctrl.label}
