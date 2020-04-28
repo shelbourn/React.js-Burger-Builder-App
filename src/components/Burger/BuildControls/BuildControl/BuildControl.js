@@ -11,7 +11,9 @@ const buildControl = (props) => {
 	return (
 		<div className={styles.BuildControl}>
 			<div className={styles.Label}>{props.ingredientLabel}</div>
-			<button className={styles.Less}>Less</button>
+			<button className={styles.Less} onClick={props.removedIngredient}>
+				Less
+			</button>
 			<button className={styles.More} onClick={props.addedIngredient}>
 				More
 			</button>
