@@ -3,17 +3,21 @@ import styles from './BuildControls.module.css'
 import BuildControl from './BuildControl/BuildControl.js'
 
 const controls = [
-	{ label: 'Lettuce', type: 'lettuce' },
+	{ label: 'Meat', type: 'meat' },
 	{ label: 'Cheese', type: 'cheese' },
 	{ label: 'Bacon', type: 'bacon' },
-	{ label: 'Meat', type: 'meat' },
+	{ label: 'Lettuce', type: 'lettuce' },
 ]
 
 const buildControls = (props) => {
 	return (
 		<div className={styles.BuildControls}>
 			{controls.map((ctrl) => (
-				<BuildControl key={ctrl.label} ingredientLabel={ctrl.label} />
+				<BuildControl
+					key={ctrl.label}
+					ingredientLabel={ctrl.label}
+					addedIngredient={() => props.ingredientAdded(ctrl.type)}
+				/>
 			))}
 		</div>
 	)
