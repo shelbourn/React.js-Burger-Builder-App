@@ -31,14 +31,37 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 //? Basically this allows us to know the object key (what type of ingredient needed)
 //? and the object value (how many of each ingredient is needed)
 
+//* .reduce(arg1, arg2) -- arg1 = aggregator, arg2 = current element in array
+//* .reduce((a, b) => {...}, []) -- in this case, [] is the initial value
+//* can also pass {} as the initial value to aggregate values into an object
+
 const burger = (props) => {
-	const transformedIngredients = Object.keys(props.ingredients).map(
-		(ingredKey) => {
+	let transformedIngredients = Object.keys(props.ingredients)
+		.map((ingredKey) => {
 			return [...Array(props.ingredients[ingredKey])].map((_, i) => {
 				return <BurgerIngredient key={ingredKey + i} type={ingredKey} />
 			})
-		}
-	)
+		})
+
+		//! Concatenates the following element with the previous aggregated elements
+		//! in array and reduces them into an empty array (initial value)
+		//! This will return an array only for ingredients which don't have
+		//! empty arrays based on the above code
+		.reduce((arr, el) => {
+			return arr.concat(el)
+		}, [])
+
+	if (transformedIngredients.length === 0) {
+		transformedIngredients = (
+			<div>
+				<p>Your burger is looking a little boring.</p>
+				<p>Please add some ingredients.</p>
+				<p>Your taste buds will thank you!</p>
+			</div>
+		)
+	}
+
+	console.log(transformedIngredients)
 
 	return (
 		<div className={styles.Burger}>
