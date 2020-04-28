@@ -7,11 +7,18 @@ import styles from './BuildControl.module.css'
  * ? FOR EACH INGREDIENT
  */
 
+//* <button disabled={}></button> is a built-in JSX property which
+//* accepts a boolean value
+
 const buildControl = (props) => {
 	return (
 		<div className={styles.BuildControl}>
 			<div className={styles.Label}>{props.ingredientLabel}</div>
-			<button className={styles.Less} onClick={props.removedIngredient}>
+			<button
+				className={styles.Less}
+				onClick={props.removedIngredient}
+				disabled={props.isDisabled}
+			>
 				Less
 			</button>
 			<button className={styles.More} onClick={props.addedIngredient}>
