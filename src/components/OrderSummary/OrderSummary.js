@@ -1,5 +1,6 @@
 import React from 'react'
 import Aux from '../../hoc/Auxiliary'
+import Button from '../UI/Button/Button'
 
 //! With functional components, you only need to use {} if
 //! the component needs to also execute code in addion to returning
@@ -19,12 +20,22 @@ const orderSummary = (props) => {
 	})
 	return (
 		<Aux>
-			<h3>Your Order</h3>
+			<h1>Your Order</h1>
 			<article>
 				Here's a summary of your delicious burger:
-				<ul>{ingredientSummary}</ul>
+				<h3>
+					<ul style={{ listStyleType: 'none', color: '#cf8f2e' }}>
+						{ingredientSummary}
+					</ul>
+				</h3>
 			</article>
-			<p>Checkout Now?</p>
+			<p>Checkout now or continue ordering?</p>
+			<Button btnType="Danger" clicked={props.backToOrder}>
+				BACK TO ORDER
+			</Button>
+			<Button btnType="Success" clicked={props.checkout}>
+				CHECKOUT
+			</Button>
 		</Aux>
 	)
 }

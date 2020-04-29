@@ -82,6 +82,10 @@ class BurgerBuilder extends Component {
 		this.setState({ purchaseInProcess: false })
 	}
 
+	purchaseCheckoutHandler = () => {
+		alert('Deliciousness is on its way!')
+	}
+
 	render() {
 		const disabledInfo = {
 			...this.state.ingredients,
@@ -98,7 +102,11 @@ class BurgerBuilder extends Component {
 					show={this.state.purchaseInProcess}
 					closeModal={this.purchaseCancelHandler}
 				>
-					<OrderSummary ingredients={this.state.ingredients} />
+					<OrderSummary
+						ingredients={this.state.ingredients}
+						backToOrder={this.purchaseCancelHandler}
+						checkout={this.purchaseCheckoutHandler}
+					/>
 				</Modal>
 				<Burger ingredients={this.state.ingredients} />
 				<BuildControls
