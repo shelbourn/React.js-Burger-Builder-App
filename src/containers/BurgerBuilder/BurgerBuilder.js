@@ -26,6 +26,7 @@ class BurgerBuilder extends Component {
 		},
 		totalPrice: 4,
 		purchasable: false,
+		purchaseInProcess: false,
 	}
 
 	//* Handler to return a boolean value which will either enable
@@ -73,6 +74,10 @@ class BurgerBuilder extends Component {
 		this.updatePurchaseableHandler(updatedIngredients)
 	}
 
+	purchaseHandler() {
+		this.setState({ purchaseInProcess: true })
+	}
+
 	render() {
 		const disabledInfo = {
 			...this.state.ingredients,
@@ -93,8 +98,9 @@ class BurgerBuilder extends Component {
 					ingredientAdded={this.addIngredientHandler}
 					ingredientRemoved={this.removeIngredientHandler}
 					disabled={disabledInfo}
-					price={this.state.totalPrice}
 					purchaseable={this.state.purchasable}
+					ordered={this.purchaseHandler}
+					price={this.state.totalPrice}
 				/>
 			</Aux>
 		)
