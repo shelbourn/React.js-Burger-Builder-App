@@ -74,7 +74,7 @@ class BurgerBuilder extends Component {
 		this.updatePurchaseableHandler(updatedIngredients)
 	}
 
-	purchaseHandler() {
+	purchaseHandler = () => {
 		this.setState({ purchaseInProcess: true })
 	}
 
@@ -90,7 +90,7 @@ class BurgerBuilder extends Component {
 		}
 		return (
 			<Aux>
-				<Modal>
+				<Modal show={this.state.purchaseInProcess}>
 					<OrderSummary ingredients={this.state.ingredients} />
 				</Modal>
 				<Burger ingredients={this.state.ingredients} />
