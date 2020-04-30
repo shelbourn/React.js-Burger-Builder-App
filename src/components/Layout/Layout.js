@@ -1,7 +1,8 @@
 import React from 'react'
 import Aux from '../../hoc/Auxiliary'
 import styles from './Layout.module.css'
-import Toolbar from '../../Navigation/Toolbar/Toolbar'
+import Toolbar from '../Navigation/Toolbar/Toolbar'
+import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
 
 /***
  * ? STATELESS WRAPPER COMPONENT FOR MAIN LAYOUT
@@ -10,6 +11,7 @@ import Toolbar from '../../Navigation/Toolbar/Toolbar'
 const layout = (props) => (
 	<Aux>
 		<Toolbar />
+		<SideDrawer />
 		<main className={styles.Content}>{props.children}</main>
 	</Aux>
 )
