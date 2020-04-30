@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './NavigationItems.module.css'
-import NavigationItem from '../NavigationItems/NavigationItem/NavigationItem'
+import NavigationItem from './NavigationItem/NavigationItem'
 
 //* When passing props that only hold boolean values
 //* you do not need to pass active(props name)={true}
