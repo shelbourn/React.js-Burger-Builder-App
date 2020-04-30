@@ -9,7 +9,7 @@ import styles from './Logo.module.css'
 //! the prod build
 
 const logo = (props) => (
-	<div className={styles.Logo}>
+	<div className={styles.Logo} style={{ height: props.height }}>
 		<img src={burgerLogo} alt="React Burger Builder Logo" />
 	</div>
 )
