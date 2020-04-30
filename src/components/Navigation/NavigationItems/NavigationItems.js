@@ -6,6 +6,8 @@ import NavigationItem from './NavigationItem/NavigationItem'
 //* you do not need to pass active(props name)={true}
 //* you only need to pass 'active(props name)'
 
+//% <a href="/"></a> goes to root of application
+
 const navigationItems = (props) => (
 	<ul className={styles.NavigationItems}>
 		<NavigationItem link="/" active>
