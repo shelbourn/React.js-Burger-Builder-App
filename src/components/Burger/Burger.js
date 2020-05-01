@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Burger.module.css'
 import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
+import PropTypes from 'prop-types'
 
 /***
  * ? STATELESS COMPONENT FOR RENDERING THE BUILT BURGER
@@ -54,9 +55,7 @@ const burger = (props) => {
 	if (transformedIngredients.length === 0) {
 		transformedIngredients = (
 			<div>
-				<p>Your burger is looking a little boring.</p>
-				<p>Please add some ingredients.</p>
-				<p>Your taste buds will thank you!</p>
+				<p>Tasty Ingredients Go Here</p>
 			</div>
 		)
 	}
@@ -70,6 +69,11 @@ const burger = (props) => {
 			<BurgerIngredient type="bread-bottom" />
 		</div>
 	)
+}
+
+//! Prop-Type Validation
+burger.propTypes = {
+	ingredients: PropTypes.object,
 }
 
 export default burger

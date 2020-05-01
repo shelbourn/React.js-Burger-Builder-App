@@ -22,20 +22,18 @@ const orderSummary = (props) => {
 		<Aux>
 			<h1>Your Order</h1>
 			<article>
-				Here's a summary of your delicious burger:
+				<p>Here's a summary of your delicious burger:</p>
 				<strong>
-					<p>
-						<ul
-							style={{
-								listStyleType: 'none',
-								padding: 0,
-								margin: 0,
-								color: '#cf8f2e',
-							}}
-						>
-							{ingredientSummary}
-						</ul>
-					</p>
+					<ul
+						style={{
+							listStyleType: 'none',
+							padding: 0,
+							margin: 0,
+							color: '#cf8f2e',
+						}}
+					>
+						{ingredientSummary}
+					</ul>
 				</strong>
 				<strong>
 					<p>Order Total: ${props.totalPrice.toFixed(2)}</p>

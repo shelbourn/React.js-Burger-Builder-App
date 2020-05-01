@@ -49,8 +49,3 @@ BurgerIngredient.propTypes = {
 }
 
 export default BurgerIngredient
-
-/***
- * * Props Used:
- * * {type}
- */
