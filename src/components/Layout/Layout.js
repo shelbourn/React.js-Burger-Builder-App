@@ -10,7 +10,7 @@ import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
 
 class Layout extends Component {
 	state = {
-		showSideDrawer: true,
+		showSideDrawer: false,
 	}
 
 	sideDrawerClosedHandler = () => {
@@ -19,10 +19,16 @@ class Layout extends Component {
 		})
 	}
 
+	sideDrawerOpenHandler = () => {
+		this.setState({
+			showSideDrawer: true,
+		})
+	}
+
 	render() {
 		return (
 			<Aux>
-				<Toolbar />
+				<Toolbar menuBtnClick={this.sideDrawerOpenHandler} />
 				<SideDrawer
 					open={this.state.showSideDrawer}
 					closed={this.sideDrawerClosedHandler}
