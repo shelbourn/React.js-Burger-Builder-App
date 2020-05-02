@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './BuildControls.module.css'
 import BuildControl from './BuildControl/BuildControl.js'
+import PropTypes from 'prop-types'
 
 const controls = [
 	{ label: 'Meat', type: 'meat' },
@@ -36,5 +37,15 @@ const buildControls = (props) => (
 		</button>
 	</div>
 )
+
+//! Prop-Type Validation
+buildControls.propTypes = {
+	price: PropTypes.number,
+	ingredientAdded: PropTypes.func,
+	ingredientRemoved: PropTypes.func,
+	disabled: PropTypes.object,
+	purchaseable: PropTypes.bool,
+	ordered: PropTypes.func,
+}
 
 export default buildControls
