@@ -49,7 +49,7 @@ class OrderSummary extends Component {
 				</article>
 				<p>Checkout now or continue ordering?</p>
 				<Button btnType="Danger" clicked={this.props.backToOrder}>
-					BACK TO ORDER
+					GO BACK
 				</Button>
 				<Button btnType="Success" clicked={this.props.checkout}>
 					CHECKOUT
