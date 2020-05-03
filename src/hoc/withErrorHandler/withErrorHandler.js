@@ -8,9 +8,12 @@ const withErrorHandler = (WrappedComponent, axios) => {
 			error: null,
 		}
 
-		componentWillMount() {
+		//* this.reqInterceptor/this.resInterceptor are class state properties
+		//* created on the fly
+
+		UNSAFE_componentWillMount() {
 			//? Must return the request for use elsewhere
-			axios.interceptors.request.use((req) => {
+			this.reqInterceptor = axios.interceptors.request.use((req) => {
 				this.setState({ error: null })
 				return req
 			})
@@ -18,13 +21,20 @@ const withErrorHandler = (WrappedComponent, axios) => {
 			//* Errors returned by Firebase will be objects with a 'message' property
 
 			//? res => res (short syntax for returning the reponse to be used elsewhere)
-			axios.interceptors.response.use(
+			this.resInterceptor = axios.interceptors.response.use(
 				(res) => res,
 				(error) => {
 					this.setState({ error: error })
 					console.log(error)
 				}
 			)
+		}
+
+		//* Use axios...eject to remove unneeded interceptors
+		//* Hook in to componentWillUnmount()
+		componentWillUnmount() {
+			axios.interceptors.request.eject(this.reqInterceptor)
+			axios.interceptors.response.eject(this.resInterceptor)
 		}
 
 		dismissErrorHandler = () => {
