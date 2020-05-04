@@ -10,8 +10,8 @@ import Button from '../UI/Button/Button'
 //* One set for dynamic JS context in JSX, and the other for JS CSS referencing
 
 class OrderSummary extends Component {
-	componentWillUpdate() {
-		console.log('[OrderSummary] WillUpdate')
+	componentDidUpdate() {
+		console.log('[OrderSummary] DidUpdate')
 	}
 
 	render() {
