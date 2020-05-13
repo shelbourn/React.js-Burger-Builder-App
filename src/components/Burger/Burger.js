@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Burger.module.css'
 import BurgerIngredient from './BurgerIngredients/BurgerIngredients.js'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 
 /***
  * ? STATELESS COMPONENT FOR RENDERING THE BUILT BURGER
@@ -78,4 +77,4 @@ burger.propTypes = {
 	ingredients: PropTypes.object,
 }
 
-export default withRouter(burger)
+export default burger

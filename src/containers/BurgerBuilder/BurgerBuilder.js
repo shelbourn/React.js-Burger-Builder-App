@@ -99,6 +99,9 @@ class BurgerBuilder extends Component {
 	//* on the server to ensure that users are not manipulating it
 	//* before the http request is submitted
 
+	//? Use this.props.history.push('/checkout') to navigate
+	//? to the checkout page when the 'Checkout' button is clicked
+
 	purchaseCheckoutHandler = () => {
 		// alert('Deliciousness is on its way!')
 		// this.setState({ loading: true })
@@ -126,6 +129,7 @@ class BurgerBuilder extends Component {
 		// 	.catch((error) => {
 		// 		this.setState({ loading: false, purchaseInProcess: false })
 		// 	})
+		this.props.history.push('/checkout')
 	}
 
 	render() {
