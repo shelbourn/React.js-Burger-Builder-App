@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary'
+import queryString from 'query-string'
 class Checkout extends Component {
 	state = {
 		ingredients: {
@@ -8,6 +9,20 @@ class Checkout extends Component {
 			cheese: 1,
 			bacon: 1,
 		},
+	}
+
+  //* Below: Parses query string, converts ingredient values to numbers,
+  //* then updates the state
+  
+	componentDidMount() {
+		const query = queryString.parse(this.props.location.search)
+		console.log(query)
+		const parsedIngredients = {}
+		for (let i in query) {
+			parsedIngredients[i] = +query[i]
+		}
+		console.log(parsedIngredients)
+		this.setState({ ingredients: parsedIngredients })
 	}
 
 	checkoutCancelledHandler = () => {
