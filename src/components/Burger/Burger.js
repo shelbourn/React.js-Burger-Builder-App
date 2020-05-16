@@ -37,6 +37,7 @@ import PropTypes from 'prop-types'
 //* can also pass {} as the initial value to aggregate values into an object
 
 const burger = (props) => {
+	console.log(props)
 	let transformedIngredients = Object.keys(props.ingredients)
 		.map((ingredKey) => {
 			return [...Array(props.ingredients[ingredKey])].map((_, i) => {
