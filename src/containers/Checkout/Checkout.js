@@ -49,10 +49,14 @@ class Checkout extends Component {
 					path={this.props.match.path + '/contact-data'}
 					// *Manually rendering the ContactData component allows us to pass
 					//* props with it.
-					render={() => (
+					//?Adding props as an argument and then spreading it in the ContactData
+					//? component passes on any props in the Checkout component to the
+					//? ContactData component
+					render={(props) => (
 						<ContactData
 							ingredients={this.state.ingredients}
 							totalPrice={this.state.totalPrice}
+							{...props}
 						/>
 					)}
 				/>
