@@ -9,6 +9,10 @@ class Orders extends Component {
 		loading: true,
 	}
 
+	//* Retrieving Orders from the server
+	//* Takes server response data, loops through the objects,
+	//* then pushes the data and order key id into its own object
+	//* within the 'order' array in state
 	componentDidMount() {
 		axios
 			.get('/orders.json')
@@ -30,8 +34,14 @@ class Orders extends Component {
 	render() {
 		return (
 			<div>
-				<Order />
-				<Order />
+				{this.state.orders.map((order) => (
+					<Order
+						key={order.id}
+						ingredients={order.ingredients}
+						price={order.price.totalPrice}
+						orderID={order.id}
+					/>
+				))}
 			</div>
 		)
 	}
