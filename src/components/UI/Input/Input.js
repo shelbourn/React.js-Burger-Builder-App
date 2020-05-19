@@ -9,7 +9,7 @@ const input = (props) => {
 	//* eg <input type="text" name="name" ...>
 	//* {...props} will pass on type="text" and name="name"
 
-	switch (props.inputType) {
+	switch (props.inputtype) {
 		case 'input':
 			inputElement = <input className={styles.InputElement} {...props} />
 			break
