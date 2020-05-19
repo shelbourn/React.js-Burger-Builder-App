@@ -4,6 +4,11 @@ import styles from './Input.module.css'
 const input = (props) => {
 	let inputElement = null
 
+	//* Passing {...props} to each of the cases below passes the normal html
+	//* properties to the custom JS/React component
+	//* eg <input type="text" name="name" ...>
+	//* {...props} will pass on type="text" and name="name"
+
 	switch (props.inputType) {
 		case 'input':
 			inputElement = <input className={styles.InputElement} {...props} />
