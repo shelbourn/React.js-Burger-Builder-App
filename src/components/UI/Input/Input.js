@@ -15,17 +15,29 @@ const input = (props) => {
 	switch (props.inputtype) {
 		case 'input':
 			inputElement = (
-				<input className={styles.InputElement} {...props.elementConfig} />
+				<input
+					className={styles.InputElement}
+					{...props.elementConfig}
+					value={props.value}
+				/>
 			)
 			break
 		case 'textarea':
 			inputElement = (
-				<textarea className={styles.InputElement} {...props.elementConfig} />
+				<textarea
+					className={styles.InputElement}
+					{...props.elementConfig}
+					value={props.value}
+				/>
 			)
 			break
 		default:
 			inputElement = (
-				<input className={styles.InputElement} {...props.elementConfig} />
+				<input
+					className={styles.InputElement}
+					{...props.elementConfig}
+					value={props.value}
+				/>
 			)
 	}
 
