@@ -4,20 +4,29 @@ import styles from './Input.module.css'
 const input = (props) => {
 	let inputElement = null
 
-	//* Passing {...props} to each of the cases below passes the normal html
+	//* Passing {...props.elementConfig} to each of the cases below passes the normal html
 	//* properties to the custom JS/React component
 	//* eg <input type="text" name="name" ...>
-	//* {...props} will pass on type="text" and name="name"
+	//* {...props.elementConfig} will pass on type="text" and name="name"
+	//? All of the default html element properties are being stored in state in the
+	//? "../../../containers/Checkout/ContactData/ContactData.js" file as
+	//? elementConfig
 
 	switch (props.inputtype) {
 		case 'input':
-			inputElement = <input className={styles.InputElement} {...props} />
+			inputElement = (
+				<input className={styles.InputElement} {...props.elementConfig} />
+			)
 			break
 		case 'textarea':
-			inputElement = <textarea className={styles.InputElement} {...props} />
+			inputElement = (
+				<textarea className={styles.InputElement} {...props.elementConfig} />
+			)
 			break
 		default:
-			inputElement = <input className={styles.InputElement} {...props} />
+			inputElement = (
+				<input className={styles.InputElement} {...props.elementConfig} />
+			)
 	}
 
 	return (
