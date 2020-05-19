@@ -6,11 +6,71 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 class ContactData extends Component {
 	state = {
-		name: '',
-		email: '',
-		address: {
-			street: '',
-			zipcode: '',
+		orderForm: {
+			name: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Your Name',
+				},
+				value: '',
+			},
+			street: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Street Address',
+				},
+				value: '',
+			},
+			city: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'City',
+					placeholder: 'Your Name',
+				},
+				value: '',
+			},
+			zipcode: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Zip Code',
+				},
+				value: '',
+			},
+			state: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'State',
+				},
+				value: '',
+			},
+			country: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Country',
+				},
+				value: '',
+			},
+			email: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Email',
+				},
+				value: '',
+			},
+			deliveryMethod: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'Delivery Method',
+				},
+				value: '',
+			},
 		},
 		loading: false,
 	}
@@ -28,18 +88,6 @@ class ContactData extends Component {
 		const order = {
 			ingredients: this.props.ingredients,
 			price: this.props.totalPrice,
-			customer: {
-				name: 'Matt Shelbourn',
-				address: {
-					street: '999 XYZ Ave',
-					city: 'Some Place',
-					zipcode: '91001',
-					state: 'CA',
-					country: 'United States',
-				},
-				email: 'test@test.com',
-				deliveryMethod: 'Priority',
-			},
 		}
 		axios
 			.post('/orders.json', order)
