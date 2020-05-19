@@ -31,19 +31,19 @@ class ContactData extends Component {
 				},
 				value: '',
 			},
-			zipcode: {
-				elementType: 'input',
-				elementConfig: {
-					type: 'text',
-					placeholder: 'Zip Code',
-				},
-				value: '',
-			},
 			state: {
 				elementType: 'input',
 				elementConfig: {
 					type: 'text',
 					placeholder: 'State',
+				},
+				value: '',
+			},
+			zipcode: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'ZIP Code',
 				},
 				value: '',
 			},
@@ -58,16 +58,18 @@ class ContactData extends Component {
 			email: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'text',
-					placeholder: 'Email',
+					type: 'email',
+					placeholder: 'Email Address',
 				},
 				value: '',
 			},
 			deliveryMethod: {
-				elementType: 'input',
+				elementType: 'select',
 				elementConfig: {
-					type: 'text',
-					placeholder: 'Delivery Method',
+					options: [
+						{ value: 'standard', displayValue: 'USPS First Class' },
+						{ value: 'priority', diplayValue: 'USPS Priority' },
+					],
 				},
 				value: '',
 			},
@@ -114,15 +116,29 @@ class ContactData extends Component {
 					inputtype="input"
 					type="email"
 					name="email"
-					placeholder="Your Email"
+					placeholder="Email Address"
 					label="Email"
 				/>
 				<Input
 					inputtype="input"
 					type="text"
 					name="street"
-					placeholder="Street"
+					placeholder="Street Address"
 					label="Address"
+				/>
+				<Input
+					inputtype="input"
+					type="text"
+					name="city"
+					placeholder="City"
+					label="City"
+				/>
+				<Input
+					inputtype="input"
+					type="text"
+					name="state"
+					placeholder="State"
+					label="State"
 				/>
 				<Input
 					inputtype="input"
@@ -130,6 +146,13 @@ class ContactData extends Component {
 					name="zipcode"
 					placeholder="Zip Code"
 					label="Zip Code"
+				/>
+				<Input
+					inputtype="input"
+					type="text"
+					name="country"
+					placeholder="Country"
+					label="Country"
 				/>
 				<Button btnType="Success" clicked={this.orderHandler}>
 					ORDER
