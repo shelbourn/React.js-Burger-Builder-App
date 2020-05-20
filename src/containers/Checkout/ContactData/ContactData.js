@@ -109,11 +109,23 @@ class ContactData extends Component {
 	//? meaning that is does not copy nested objects
 	//? to create a deep clone you must manually spread the object as many
 	//? times as necessary
+
+	//* Creating two-way binding using deeply cloned state objects
 	inputChangedHandler = (event, inputIdentifier) => {
+		//% Creating a deep clone of state
 		const updatedOrderForm = {
 			...this.state.orderForm,
 		}
 		const updatedFormElement = { ...updatedOrderForm[inputIdentifier] }
+
+		//% Setting the cloned state value to event value (user input)
+		updatedFormElement.value = event.target.value
+
+		//% Updating the cloned state's element value with event value
+		updatedOrderForm[inputIdentifier] = updatedFormElement
+
+		//% Updating the state with the updated cloned state (with user input)
+		this.setState({ orderForm: updatedOrderForm })
 	}
 
 	render() {
