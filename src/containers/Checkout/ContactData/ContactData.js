@@ -105,8 +105,15 @@ class ContactData extends Component {
 			})
 	}
 
-	inputChangedHandler = (event) => {
-		console.log(event.target.value)
+	//? Using the spread {...} operator does not create a deep clone
+	//? meaning that is does not copy nested objects
+	//? to create a deep clone you must manually spread the object as many
+	//? times as necessary
+	inputChangedHandler = (event, inputIdentifier) => {
+		const updatedOrderForm = {
+			...this.state.orderForm,
+		}
+		const updatedFormElement = { ...updatedOrderForm[inputIdentifier] }
 	}
 
 	render() {
@@ -126,7 +133,7 @@ class ContactData extends Component {
 						inputtype={formElement.config.elementType}
 						elementConfig={formElement.config.elementConfig}
 						value={formElement.config.value}
-						changed={this.inputChangedHandler}
+						changed={(event) => this.inputChangedHandler(event, formElement.id)}
 					/>
 				))}
 				<Button btnType="Success" clicked={this.orderHandler}>
