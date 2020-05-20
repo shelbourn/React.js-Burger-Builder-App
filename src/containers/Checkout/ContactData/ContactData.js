@@ -30,7 +30,7 @@ class ContactData extends Component {
 				elementType: 'input',
 				elementConfig: {
 					type: 'City',
-					placeholder: 'Your Name',
+					placeholder: 'City',
 				},
 				value: '',
 			},
@@ -62,7 +62,7 @@ class ContactData extends Component {
 				elementType: 'input',
 				elementConfig: {
 					type: 'email',
-					placeholder: 'Email Address',
+					placeholder: 'Your Email',
 				},
 				value: '',
 			},
@@ -71,7 +71,7 @@ class ContactData extends Component {
 				elementConfig: {
 					options: [
 						{ value: 'standard', displayValue: 'USPS First Class' },
-						{ value: 'priority', diplayValue: 'USPS Priority' },
+						{ value: 'priority', displayValue: 'USPS Priority' },
 					],
 				},
 				value: '',
@@ -105,10 +105,30 @@ class ContactData extends Component {
 			})
 	}
 
+	inputChangedHandler = (event) => {
+		console.log(event.target.value)
+	}
+
 	render() {
+		const formElementsArray = []
+		for (let key in this.state.orderForm) {
+			formElementsArray.push({
+				id: key,
+				config: this.state.orderForm[key],
+			})
+		}
+
 		let form = (
 			<form>
-				<Input elementType="..." elementConfig="..." value="..." />
+				{formElementsArray.map((formElement) => (
+					<Input
+						key={formElement.id}
+						inputtype={formElement.config.elementType}
+						elementConfig={formElement.config.elementConfig}
+						value={formElement.config.value}
+						changed={this.inputChangedHandler}
+					/>
+				))}
 				<Button btnType="Success" clicked={this.orderHandler}>
 					ORDER
 				</Button>

@@ -19,6 +19,7 @@ const input = (props) => {
 					className={styles.InputElement}
 					{...props.elementConfig}
 					value={props.value}
+					onChange={props.changed}
 				/>
 			)
 			break
@@ -28,7 +29,23 @@ const input = (props) => {
 					className={styles.InputElement}
 					{...props.elementConfig}
 					value={props.value}
+					onChange={props.changed}
 				/>
+			)
+			break
+		case 'select':
+			inputElement = (
+				<select
+					className={styles.InputElement}
+					value={props.value}
+					onChange={props.changed}
+				>
+					{props.elementConfig.options.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.displayValue}
+						</option>
+					))}
+				</select>
 			)
 			break
 		default:
@@ -37,6 +54,7 @@ const input = (props) => {
 					className={styles.InputElement}
 					{...props.elementConfig}
 					value={props.value}
+					onChange={props.changed}
 				/>
 			)
 	}
