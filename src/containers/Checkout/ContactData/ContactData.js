@@ -17,6 +17,10 @@ class ContactData extends Component {
 					placeholder: 'Your Name',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEntry: false,
+				},
 			},
 			street: {
 				elementType: 'input',
@@ -25,6 +29,10 @@ class ContactData extends Component {
 					placeholder: 'Street Address',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEntry: false,
+				},
 			},
 			city: {
 				elementType: 'input',
@@ -33,6 +41,10 @@ class ContactData extends Component {
 					placeholder: 'City',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEntry: false,
+				},
 			},
 			state: {
 				elementType: 'input',
@@ -41,6 +53,10 @@ class ContactData extends Component {
 					placeholder: 'State',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEntry: false,
+				},
 			},
 			zipcode: {
 				elementType: 'input',
@@ -49,6 +65,12 @@ class ContactData extends Component {
 					placeholder: 'ZIP Code',
 				},
 				value: '',
+				validation: {
+					required: true,
+					minZipLength: 5,
+					maxZipLength: 5,
+					validEntry: false,
+				},
 			},
 			country: {
 				elementType: 'input',
@@ -57,6 +79,10 @@ class ContactData extends Component {
 					placeholder: 'Country',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEntry: false,
+				},
 			},
 			email: {
 				elementType: 'input',
@@ -65,6 +91,11 @@ class ContactData extends Component {
 					placeholder: 'Your Email',
 				},
 				value: '',
+				validation: {
+					required: true,
+					validEmail: '@.',
+					validEntry: false,
+				},
 			},
 			deliveryMethod: {
 				elementType: 'select',
@@ -115,6 +146,33 @@ class ContactData extends Component {
 			})
 	}
 
+	//? Validating user input
+	checkValidation(value, rules) {
+		let isValid = false
+
+		//% Empty input check
+		if (rules.required) {
+			//* isValid will be truthy if value (after trim) is not equal to an empty string
+			isValid = value.trim() !== ''
+		}
+
+		//% Valid email check
+		if (rules.validEmail) {
+			isValid = value.includes('@') && value.includes('.')
+		}
+
+		//% Valid zip length check
+		if (rules.minZipLength) {
+			isValid = value.length >= rules.minZipLength
+		}
+
+		if (rules.maxZipLength) {
+			isValid = value.length <= rules.maxZipLength
+		}
+
+		return isValid
+	}
+
 	//? Using the spread {...} operator does not create a deep clone
 	//? meaning that is does not copy nested objects
 	//? to create a deep clone you must manually spread the object as many
@@ -131,8 +189,17 @@ class ContactData extends Component {
 		//% Setting the cloned state value to event value (user input)
 		updatedFormElement.value = event.target.value
 
+		//% Setting the validation state prop as true or false based on checkValidation
+		updatedFormElement.validation.validEntry = this.checkValidation(
+			updatedFormElement.value,
+			updatedFormElement.validation
+		)
+
 		//% Updating the cloned state's element value with event value
 		updatedOrderForm[inputIdentifier] = updatedFormElement
+
+		//* Incremental check to see if everything is working
+		console.log(updatedFormElement)
 
 		//% Updating the state with the updated cloned state (with user input)
 		this.setState({ orderForm: updatedOrderForm })
