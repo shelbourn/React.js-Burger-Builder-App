@@ -148,26 +148,26 @@ class ContactData extends Component {
 
 	//? Validating user input
 	checkValidation(value, rules) {
-		let isValid = false
+		let isValid = true
 
 		//% Empty input check
 		if (rules.required) {
 			//* isValid will be truthy if value (after trim) is not equal to an empty string
-			isValid = value.trim() !== ''
+			isValid = value.trim() !== '' && isValid
 		}
 
 		//% Valid email check
 		if (rules.validEmail) {
-			isValid = value.includes('@') && value.includes('.')
+			isValid = value.includes('@') && value.includes('.') && isValid
 		}
 
 		//% Valid zip length check
 		if (rules.minZipLength) {
-			isValid = value.length >= rules.minZipLength
+			isValid = value.length >= rules.minZipLength && isValid
 		}
 
 		if (rules.maxZipLength) {
-			isValid = value.length <= rules.maxZipLength
+			isValid = value.length <= rules.maxZipLength && isValid
 		}
 
 		return isValid
