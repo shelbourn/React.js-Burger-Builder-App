@@ -90,6 +90,15 @@ class ContactData extends Component {
 		//? Submitting order to server via http request
 		alert('Deliciousness is on its way!')
 		this.setState({ loading: true })
+
+		//% Maps the keys in orderForm to the values entered by the user
+		//% and then stores the key/value pairs in the formData object
+		const formData = {}
+		for (let formElementIdentifier in this.state.orderForm) {
+			formData[formElementIdentifier] = this.state.orderForm[
+				formElementIdentifier
+			].value
+		}
 		const order = {
 			ingredients: this.props.ingredients,
 			price: this.props.totalPrice,
@@ -138,7 +147,7 @@ class ContactData extends Component {
 		}
 
 		let form = (
-			<form>
+			<form onSubmit={this.orderHandler}>
 				{formElementsArray.map((formElement) => (
 					<Input
 						key={formElement.id}
@@ -148,9 +157,7 @@ class ContactData extends Component {
 						changed={(event) => this.inputChangedHandler(event, formElement.id)}
 					/>
 				))}
-				<Button btnType="Success" clicked={this.orderHandler}>
-					ORDER
-				</Button>
+				<Button btnType="Success">ORDER</Button>
 			</form>
 		)
 		if (this.state.loading) {
