@@ -113,6 +113,7 @@ class ContactData extends Component {
 					],
 				},
 				value: '',
+				validEntry: true,
 			},
 		},
 		loading: false,
@@ -155,7 +156,7 @@ class ContactData extends Component {
 	}
 
 	//? Validating user input
-	checkValidation(value, rules) {
+	checkValidation = (value, rules) => {
 		let isValid = true
 
 		//% Empty input check
@@ -211,7 +212,7 @@ class ContactData extends Component {
 
 		//% Checking whether overall form is valid or not
 		//% and updating formIsValid state prop if true
-		const formIsValidCheck = true
+		let formIsValidCheck = true
 		for (let inputIdentifier in updatedOrderForm) {
 			formIsValidCheck =
 				updatedOrderForm[inputIdentifier].validEntry && formIsValidCheck
@@ -250,7 +251,7 @@ class ContactData extends Component {
 						userInteracted={formElement.config.userInteracted}
 					/>
 				))}
-				//? Must use a disabled prop because this is our custom button
+				{/* Must use a disabled prop because this is our custom button */}
 				<Button btnType="Success" disabled={!this.state.formIsValid}>
 					ORDER
 				</Button>
