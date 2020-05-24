@@ -3,6 +3,11 @@ import styles from './Input.module.css'
 
 const input = (props) => {
 	let inputElement = null
+	const inputClasses = [styles.InputElement]
+
+	if (props.invalid && props.shouldValidate) {
+		inputClasses.push(styles.Invalid)
+	}
 
 	//* Passing {...props.elementConfig} to each of the cases below passes the normal html
 	//* properties to the custom JS/React component
@@ -16,7 +21,7 @@ const input = (props) => {
 		case 'input':
 			inputElement = (
 				<input
-					className={styles.InputElement}
+					className={inputClasses.join(' ')}
 					{...props.elementConfig}
 					value={props.value}
 					onChange={props.changed}
