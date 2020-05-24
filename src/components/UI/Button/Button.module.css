@@ -16,6 +16,13 @@
 	padding-left: 0;
 }
 
+/*? :disabled is a pseudo-selector for the button html element */
+/*? which styles it when the button is disabled */
+.Button:disabled {
+	color: #ccc;
+	cursor: not-allowed;
+}
+
 .Success {
 	color: #5c9210;
 }
