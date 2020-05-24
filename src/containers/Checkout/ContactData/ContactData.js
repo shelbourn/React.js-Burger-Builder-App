@@ -19,8 +19,8 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			street: {
 				elementType: 'input',
@@ -31,8 +31,8 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			city: {
 				elementType: 'input',
@@ -43,8 +43,8 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			state: {
 				elementType: 'input',
@@ -55,8 +55,8 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			zipcode: {
 				elementType: 'input',
@@ -69,8 +69,8 @@ class ContactData extends Component {
 					required: true,
 					minZipLength: 5,
 					maxZipLength: 5,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			country: {
 				elementType: 'input',
@@ -81,8 +81,8 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			email: {
 				elementType: 'input',
@@ -94,8 +94,8 @@ class ContactData extends Component {
 				validation: {
 					required: true,
 					validEmail: '@.',
-					validEntry: false,
 				},
+				validEntry: false,
 			},
 			deliveryMethod: {
 				elementType: 'select',
@@ -190,7 +190,7 @@ class ContactData extends Component {
 		updatedFormElement.value = event.target.value
 
 		//% Setting the validation state prop as true or false based on checkValidation
-		updatedFormElement.validation.validEntry = this.checkValidation(
+		updatedFormElement.validEntry = this.checkValidation(
 			updatedFormElement.value,
 			updatedFormElement.validation
 		)
