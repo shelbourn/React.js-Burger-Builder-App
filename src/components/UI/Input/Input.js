@@ -5,7 +5,7 @@ const input = (props) => {
 	let inputElement = null
 	const inputClasses = [styles.InputElement]
 
-	if (props.invalid && props.shouldValidate) {
+	if (props.invalid && props.shouldValidate && props.userInteracted) {
 		inputClasses.push(styles.Invalid)
 	}
 
