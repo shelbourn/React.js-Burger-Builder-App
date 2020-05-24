@@ -116,6 +116,7 @@ class ContactData extends Component {
 			},
 		},
 		loading: false,
+		formIsValid: false,
 	}
 
 	//* .preventDefault() prevents the default event action from happening
@@ -208,11 +209,22 @@ class ContactData extends Component {
 		//% Updating the cloned state's element value with event value
 		updatedOrderForm[inputIdentifier] = updatedFormElement
 
+		//% Checking whether overall form is valid or not
+		//% and updating formIsValid state prop if true
+		const formIsValidCheck = true
+		for (let inputIdentifier in updatedOrderForm) {
+			formIsValidCheck =
+				updatedOrderForm[inputIdentifier].validEntry && formIsValidCheck
+		}
+
 		//* Incremental check to see if everything is working
 		console.log(updatedFormElement)
 
 		//% Updating the state with the updated cloned state (with user input)
-		this.setState({ orderForm: updatedOrderForm })
+		this.setState({
+			orderForm: updatedOrderForm,
+			formIsValid: formIsValidCheck,
+		})
 	}
 
 	render() {
@@ -238,7 +250,10 @@ class ContactData extends Component {
 						userInteracted={formElement.config.userInteracted}
 					/>
 				))}
-				<Button btnType="Success">ORDER</Button>
+				//? Must use a disabled prop because this is our custom button
+				<Button btnType="Success" disabled={!this.state.formIsValid}>
+					ORDER
+				</Button>
 			</form>
 		)
 		if (this.state.loading) {
