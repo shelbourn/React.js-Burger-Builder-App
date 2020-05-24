@@ -112,7 +112,7 @@ class ContactData extends Component {
 						{ value: 'priority', displayValue: 'USPS Priority' },
 					],
 				},
-				value: '',
+				value: 'standard',
 				validation: {},
 				validEntry: true,
 			},
