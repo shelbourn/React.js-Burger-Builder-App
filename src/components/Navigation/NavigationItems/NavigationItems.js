@@ -10,10 +10,10 @@ import NavigationItem from './NavigationItem/NavigationItem'
 
 const navigationItems = (props) => (
 	<ul className={styles.NavigationItems}>
-		<NavigationItem link="/" active>
+		<NavigationItem link="/" exactProp={true}>
 			Burger Builder
 		</NavigationItem>
-		<NavigationItem link="/">Checkout</NavigationItem>
+		<NavigationItem link="/orders">Orders</NavigationItem>
 	</ul>
 )
 
