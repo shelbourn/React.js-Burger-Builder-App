@@ -113,6 +113,7 @@ class ContactData extends Component {
 					],
 				},
 				value: '',
+				validation: {},
 				validEntry: true,
 			},
 		},
@@ -158,6 +159,14 @@ class ContactData extends Component {
 	//? Validating user input
 	checkValidation = (value, rules) => {
 		let isValid = true
+
+		//* Duplicate functionality of setting 'validation: {}' in state for
+		//* deliveryMethod
+		//* Since our validation logic checks an element's rules, rules have to
+		//* exist for all elements, including deliveryMethod
+		if (!rules) {
+			return true
+		}
 
 		//% Empty input check
 		if (rules.required) {
