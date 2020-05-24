@@ -21,6 +21,7 @@ class ContactData extends Component {
 					required: true,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			street: {
 				elementType: 'input',
@@ -33,6 +34,7 @@ class ContactData extends Component {
 					required: true,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			city: {
 				elementType: 'input',
@@ -45,6 +47,7 @@ class ContactData extends Component {
 					required: true,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			state: {
 				elementType: 'input',
@@ -57,6 +60,7 @@ class ContactData extends Component {
 					required: true,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			zipcode: {
 				elementType: 'input',
@@ -71,6 +75,7 @@ class ContactData extends Component {
 					maxZipLength: 5,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			country: {
 				elementType: 'input',
@@ -83,6 +88,7 @@ class ContactData extends Component {
 					required: true,
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			email: {
 				elementType: 'input',
@@ -96,6 +102,7 @@ class ContactData extends Component {
 					validEmail: '@.',
 				},
 				validEntry: false,
+				userInteracted: false,
 			},
 			deliveryMethod: {
 				elementType: 'select',
@@ -194,6 +201,9 @@ class ContactData extends Component {
 			updatedFormElement.value,
 			updatedFormElement.validation
 		)
+
+		//% Updating the userInteracted state prop with value of true
+		updatedFormElement.userInteracted = true
 
 		//% Updating the cloned state's element value with event value
 		updatedOrderForm[inputIdentifier] = updatedFormElement
