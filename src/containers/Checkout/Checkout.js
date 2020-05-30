@@ -22,20 +22,7 @@ class Checkout extends Component {
 				/>
 				<Route
 					path={this.props.match.path + '/contact-data'}
-					// // * Manually rendering the ContactData component allows us to pass
-					// // * props with it.
-					// // ? Adding props as an argument and then spreading it in the ContactData
-					// // ? component passes on any props in the Checkout component to the
-          // // ? ContactData component
-          //! This trick to pass on props to ContactData component is no longer
-          //! needed with Redux because we will just access the price/ingred in state
-					render={(props) => (
-						<ContactData
-							ingredients={this.props.ingred}
-							totalPrice={this.props.totPrice}
-							{...props}
-						/>
-					)}
+					component={ContactData}
 				/>
 			</div>
 		)
