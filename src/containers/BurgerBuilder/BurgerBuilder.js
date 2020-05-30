@@ -65,22 +65,6 @@ class BurgerBuilder extends Component {
 	//? to the checkout page when the 'Checkout' button is clicked
 
 	purchaseCheckoutHandler = () => {
-		//* encodeURIComponent is a built-in JS object that encodes data for URLs
-		//* Below we are using encodeURIComponent to extrac the key/value pairs
-		//* from the ingredients object and then pushing them to the queryParams array
-		//* in a search param format (key=value) and then using .join('&') to add a '&'
-		//* delimiter between each of the params
-		const queryParams = []
-
-		for (let i in this.props.ingred) {
-			queryParams.push(
-				encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ingred[i])
-			)
-		}
-
-		queryParams.push('totalPrice=' + this.props.totPrice)
-
-		const queryString = queryParams.join('&')
 		this.props.history.push({
 			pathname: '/checkout',
 			search: '?' + queryString,
