@@ -9,26 +9,6 @@ class Checkout extends Component {
 		price: 0,
 	}
 
-	//* Below: Parses query string, converts ingredient values to numbers,
-	//* then updates the state
-
-	componentDidMount() {
-		const query = queryString.parse(this.props.location.search)
-		console.log(query)
-		const parsedIngredients = {}
-		const parsedPrice = {}
-		for (let i in query) {
-			if (i !== 'totalPrice') {
-				parsedIngredients[i] = +query[i]
-			}
-			if (i === 'totalPrice') {
-				parsedPrice[i] = +query[i]
-			}
-		}
-		this.setState({ ingredients: parsedIngredients, totalPrice: parsedPrice })
-		console.log(parsedIngredients, parsedPrice)
-	}
-
 	checkoutCancelledHandler = () => {
 		this.props.history.goBack()
 	}
