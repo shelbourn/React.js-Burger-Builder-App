@@ -16,7 +16,6 @@ import * as actionTypes from '../../store/actions'
 
 class BurgerBuilder extends Component {
 	state = {
-		purchasable: false,
 		purchaseInProcess: false,
 		loading: false,
 		error: false,
@@ -32,19 +31,6 @@ class BurgerBuilder extends Component {
 		// 	.catch((error) => {
 		// 		this.setState({ error: true })
 		// 	})
-	}
-
-	//* Handler to return a boolean value which will either enable
-	//* or disable the 'Submit Order' button
-	updatePurchaseableHandler(ingredients) {
-		const sum = Object.keys(ingredients)
-			.map((ingredKey) => {
-				return ingredients[ingredKey]
-			})
-			.reduce((sum, el) => {
-				return sum + el
-			}, 0)
-		this.setState({ purchasable: sum > 0 })
 	}
 
 	purchaseHandler = () => {
