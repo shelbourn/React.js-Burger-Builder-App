@@ -20,10 +20,10 @@ initialState = {
 const reduxReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_INGREDIENT: {
-			//* Two-level immutable state update
 			return {
 				...state,
 				ingredients: {
+					//* Two-level-deep immutable state update
 					...state.ingredients,
 					[action.payload.ingredientName]:
 						state.ingredients[action.payload.ingredientName] + 1,
@@ -31,6 +31,14 @@ const reduxReducer = (state = initialState, action) => {
 			}
 		}
 		case actionTypes.REMOVE_INGREDIENT: {
+			return {
+				...state,
+				ingredients: {
+					...state.ingredients,
+					[action.payload.ingredientName]:
+						state.ingredients[action.payload.ingredientName] - 1,
+				},
+			}
 		}
 		default:
 			return state
