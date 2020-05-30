@@ -4,14 +4,22 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter } from 'react-router-dom'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import reduxReducer from './store/reducer'
+
+const reduxStore = createStore(reduxReducer)
 
 //* Can change the <App /> element below to another component that you
 //* want to be the root component
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		{/* <Provider> should wrap all other components */}
+		<Provider store={reduxStore}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )
