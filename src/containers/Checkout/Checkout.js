@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary'
-import queryString from 'query-string'
 import ContactData from './ContactData/ContactData'
 import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 class Checkout extends Component {
 	checkoutCancelledHandler = () => {
 		this.props.history.goBack()
@@ -16,7 +16,7 @@ class Checkout extends Component {
 		return (
 			<div>
 				<CheckoutSummary
-					ingredients={this.state.ingredients}
+					ingredients={this.props.ingred}
 					checkoutCancelled={this.checkoutCancelledHandler}
 					checkoutContinued={this.checkoutContinuedHandler}
 				/>
@@ -29,8 +29,8 @@ class Checkout extends Component {
 					//? ContactData component
 					render={(props) => (
 						<ContactData
-							ingredients={this.state.ingredients}
-							totalPrice={this.state.totalPrice}
+							ingredients={this.props.ingred}
+							totalPrice={this.props.totPrice}
 							{...props}
 						/>
 					)}
@@ -40,4 +40,11 @@ class Checkout extends Component {
 	}
 }
 
-export default Checkout
+const mapStateToProps = (state) => {
+	return {
+		ingred: ingredients,
+		totPrice: totalPrice,
+	}
+}
+
+export default connect(mapStateToProps)(Checkout)
