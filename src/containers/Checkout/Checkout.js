@@ -4,11 +4,6 @@ import queryString from 'query-string'
 import ContactData from './ContactData/ContactData'
 import { Route } from 'react-router-dom'
 class Checkout extends Component {
-	state = {
-		ingredients: {},
-		price: 0,
-	}
-
 	checkoutCancelledHandler = () => {
 		this.props.history.goBack()
 	}
