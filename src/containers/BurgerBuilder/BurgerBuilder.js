@@ -65,10 +65,7 @@ class BurgerBuilder extends Component {
 	//? to the checkout page when the 'Checkout' button is clicked
 
 	purchaseCheckoutHandler = () => {
-		this.props.history.push({
-			pathname: '/checkout',
-			search: '?' + queryString,
-		})
+		this.props.history.push('/checkout')
 	}
 
 	render() {
