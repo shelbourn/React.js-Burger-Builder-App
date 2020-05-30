@@ -1,7 +1,7 @@
 // Root Redux reducer
 import * as actionTypes from './actions'
 
-initialState = {
+const initialState = {
 	ingredients: {
 		bacon: 0,
 		cheese: 0,
