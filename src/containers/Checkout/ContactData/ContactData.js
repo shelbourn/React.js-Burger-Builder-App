@@ -4,6 +4,7 @@ import styles from './ContactData.module.css'
 import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
+import { connect } from 'react-redux'
 
 //* elementConfig property stores the default html properties which are then
 //* passsed as props to the component
@@ -126,7 +127,7 @@ class ContactData extends Component {
 	//* the page
 	orderHandler = (event) => {
 		event.preventDefault()
-		console.log(this.props.totalPrice)
+		console.log(this.props.totPrice)
 
 		//? Submitting order to server via http request
 		alert('Deliciousness is on its way!')
@@ -141,8 +142,8 @@ class ContactData extends Component {
 			].value
 		}
 		const order = {
-			ingredients: this.props.ingredients,
-			price: this.props.totalPrice,
+			ingredients: this.props.ingred,
+			price: this.props.totPrice,
 			orderData: formData,
 		}
 		axios
@@ -278,4 +279,11 @@ class ContactData extends Component {
 	}
 }
 
-export default ContactData
+const mapStateToProps = (state) => {
+	return {
+		ingred: state.ingredients,
+		totPrice: state.totalPrice,
+	}
+}
+
+export default connect(mapStateToProps)(ContactData)
