@@ -44,7 +44,7 @@ const reduxReducer = (state = initialState, action) => {
 						state.ingredients[action.payload.ingredientName] + 1,
 				},
 				totalPrice:
-					state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientPrice],
+					state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
 			}
 		}
 		case actionTypes.REMOVE_INGREDIENT: {
@@ -56,7 +56,7 @@ const reduxReducer = (state = initialState, action) => {
 						state.ingredients[action.payload.ingredientName] - 1,
 				},
 				totalPrice:
-					state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientPrice],
+					state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
 			}
 		}
 		default:
