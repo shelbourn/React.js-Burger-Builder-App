@@ -287,3 +287,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ContactData)
+
+/***
+ * ! To use dispatch only with connect you use the following syntax:
+ * ! export default connect (null, mapDispatchToProps)(ContactData)
+ */
