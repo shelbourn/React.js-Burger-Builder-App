@@ -14,6 +14,7 @@ const reduxStore = createStore(reduxReducer)
 //* want to be the root component
 ReactDOM.render(
 	<React.StrictMode>
+		{/* <Provider> should wrap all other components */}
 		<Provider store={reduxStore}>
 			<BrowserRouter>
 				<App />

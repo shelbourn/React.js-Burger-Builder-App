@@ -1,9 +1,40 @@
 // Root Redux reducer
+import * as actionTypes from './actions'
 
-initialState = {}
+initialState = {
+	ingredients: {
+		bacon: 0,
+		cheese: 0,
+		meat: 0,
+		lettuce: 0,
+	},
+	totalPrice: 4,
+}
+
+/***
+ * ? This syntax: [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] + 1
+ * ? Dynamically sets the reducer to expect an action payload property named ingredientName
+ * ? and then (in this case) updates that property's value by adding 1
+ */
 
 const reduxReducer = (state = initialState, action) => {
-	return state
+	switch (action.type) {
+		case actionTypes.ADD_INGREDIENT: {
+			//* Two-level immutable state update
+			return {
+				...state,
+				ingredients: {
+					...state.ingredients,
+					[action.payload.ingredientName]:
+						state.ingredients[action.payload.ingredientName] + 1,
+				},
+			}
+		}
+		case actionTypes.REMOVE_INGREDIENT: {
+		}
+		default:
+			return state
+	}
 }
 
 export default reduxReducer
