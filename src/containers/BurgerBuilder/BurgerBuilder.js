@@ -33,6 +33,21 @@ class BurgerBuilder extends Component {
 		// 	})
 	}
 
+	//* Handler to return a boolean value which will either enable
+	//* or disable the 'Submit Order' button
+	//! Can handle the purchaseable property with Redux or with local UI state
+	//! as we do here.
+	updatePurchaseableHandler(ingredients) {
+		const sum = Object.keys(ingredients)
+			.map((ingredKey) => {
+				return ingredients[ingredKey]
+			})
+			.reduce((sum, el) => {
+				return sum + el
+			}, 0)
+		return sum > 0
+	}
+
 	purchaseHandler = () => {
 		this.setState({ purchaseInProcess: true })
 	}
@@ -110,7 +125,7 @@ class BurgerBuilder extends Component {
 						ingredientAdded={this.props.onIngredientAdded}
 						ingredientRemoved={this.props.onIngredientRemoved}
 						disabled={disabledInfo}
-						purchaseable={this.state.purchasable}
+						purchaseable={this.updatePurchaseableHandler(this.props.ingred)}
 						ordered={this.purchaseHandler}
 						price={this.props.totPrice}
 					/>
