@@ -42,8 +42,8 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		ingred: ingredients,
-		totPrice: totalPrice,
+		ingred: state.ingredients,
+		totPrice: state.totalPrice,
 	}
 }
 
