@@ -14,13 +14,6 @@ import * as actionTypes from '../../store/actions'
  * ? STATEFUL COMPONENT/CONTAINER FOR BURGER BUILDER FUNCTIONALITY
  */
 
-const INGREDIENT_PRICES = {
-	lettuce: 0.5,
-	cheese: 0.75,
-	meat: 1.75,
-	bacon: 1.0,
-}
-
 class BurgerBuilder extends Component {
 	state = {
 		totalPrice: 4,
