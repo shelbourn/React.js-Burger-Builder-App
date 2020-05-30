@@ -1,3 +1,5 @@
+// Root Redux reducer
+
 initialState = {}
 
 const reduxReducer = (state = initialState, action) => {
