@@ -8,7 +8,7 @@ import Modal from '../../components/UI/Modal/Modal.js'
 import OrderSummary from '../../components/OrderSummary/OrderSummary'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
-import * as actionTypes from '../../store/actions'
+import * as actionTypes from '../../store/actions/actionTypes'
 
 /***
  * ? STATEFUL COMPONENT/CONTAINER FOR BURGER BUILDER FUNCTIONALITY
