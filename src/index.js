@@ -8,13 +8,15 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import reduxReducer from './store/reducer'
 
-const reduxStore = createStore(reduxReducer)
+const reduxStore = createStore(
+	reduxReducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 //* Can change the <App /> element below to another component that you
 //* want to be the root component
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <Provider> should wrap all other components */}
 		<Provider store={reduxStore}>
 			<BrowserRouter>
 				<App />
