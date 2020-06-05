@@ -8,7 +8,9 @@ import Modal from '../../components/UI/Modal/Modal.js'
 import OrderSummary from '../../components/OrderSummary/OrderSummary'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
-import * as actionTypes from '../../store/actions/actionTypes'
+// We can omit the filename in the import below because index.js files are automatically
+// chosen if no file is specified
+import * as burgerBuilderActions from '../../store/actions/index'
 
 /***
  * ? STATEFUL COMPONENT/CONTAINER FOR BURGER BUILDER FUNCTIONALITY
@@ -153,14 +155,14 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onIngredientAdded: (ingredName) =>
 			dispatch({
-				type: actionTypes.ADD_INGREDIENT,
+				type: burgerBuilderActions.addIngredient(ingredName),
 				payload: {
 					ingredientName: ingredName,
 				},
 			}),
 		onIngredientRemoved: (ingredName) =>
 			dispatch({
-				type: actionTypes.REMOVE_INGREDIENT,
+				type: burgerBuilderActions.removeIngredient(ingredName),
 				payload: {
 					ingredientName: ingredName,
 				},

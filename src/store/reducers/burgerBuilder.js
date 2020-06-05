@@ -32,7 +32,7 @@ const INGREDIENT_PRICES = {
  * * that control price so it makes sense.
  */
 
-const reduxReducer = (state = initialState, action) => {
+const burgerBuilderReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_INGREDIENT: {
 			return {
@@ -64,4 +64,4 @@ const reduxReducer = (state = initialState, action) => {
 	}
 }
 
-export default reduxReducer
+export default burgerBuilderReducer
