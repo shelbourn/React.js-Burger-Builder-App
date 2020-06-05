@@ -154,19 +154,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onIngredientAdded: (ingredName) =>
-			dispatch({
-				type: burgerBuilderActions.addIngredient(ingredName),
-				payload: {
-					ingredientName: ingredName,
-				},
-			}),
+			dispatch(burgerBuilderActions.addIngredient(ingredName)),
 		onIngredientRemoved: (ingredName) =>
-			dispatch({
-				type: burgerBuilderActions.removeIngredient(ingredName),
-				payload: {
-					ingredientName: ingredName,
-				},
-			}),
+			dispatch(burgerBuilderActions.removeIngredient(ingredName)),
 	}
 }
 
