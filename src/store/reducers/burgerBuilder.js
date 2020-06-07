@@ -55,6 +55,19 @@ const burgerBuilderReducer = (state = initialState, action) => {
 					state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
 			}
 		}
+		case actionTypes.SET_INGREDIENTS: {
+			return {
+				...state,
+				ingredients: action.payload.ingredients,
+				error: false,
+			}
+		}
+		case actionTypes.FETCH_INGREDIENTS_FAILED: {
+			return {
+				...state,
+				error: true,
+			}
+		}
 		default:
 			return state
 	}
