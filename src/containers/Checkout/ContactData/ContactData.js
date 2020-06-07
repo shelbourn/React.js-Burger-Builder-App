@@ -5,6 +5,8 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import { connect } from 'react-redux'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import * as orderActions from '../../../store/actions/index'
 
 //* elementConfig property stores the default html properties which are then
 //* passsed as props to the component
@@ -131,7 +133,6 @@ class ContactData extends Component {
 
 		//? Submitting order to server via http request
 		alert('Deliciousness is on its way!')
-		this.setState({ loading: true })
 
 		//% Maps the keys in orderForm to the values entered by the user
 		//% and then stores the key/value pairs in the formData object
@@ -146,6 +147,8 @@ class ContactData extends Component {
 			price: this.props.totPrice,
 			orderData: formData,
 		}
+
+		this.props.onOrderBurger(order)
 	}
 
 	//? Validating user input
@@ -277,7 +280,12 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(ContactData)
+const mapDispatchToProps = (dispatch) => {
+	onOrderBurger: (orderData) =>
+		dispatch(orderActions.purchaseBurgerStart(orderData))
+}
+
+export default connect(mapStateToProps)(withErrorHandler(ContactData, axios))
 
 /***
  * ! To use dispatch only with connect you use the following syntax:
