@@ -19,20 +19,10 @@ import * as burgerBuilderActions from '../../store/actions/index'
 class BurgerBuilder extends Component {
 	state = {
 		purchaseInProcess: false,
-		loading: false,
-		error: false,
 	}
 
 	componentDidMount() {
 		// console.log(this.props)
-		// axios
-		// 	.get('/ingredients.json')
-		// 	.then((response) => {
-		// 		this.setState({ ingredients: response.data })
-		// 	})
-		// 	.catch((error) => {
-		// 		this.setState({ error: true })
-		// 	})
 	}
 
 	//* Handler to return a boolean value which will either enable
@@ -123,10 +113,6 @@ class BurgerBuilder extends Component {
 					totalPrice={this.props.totPrice}
 				/>
 			)
-
-			if (this.state.loading) {
-				orderSummary = <Spinner />
-			}
 		}
 
 		return (
