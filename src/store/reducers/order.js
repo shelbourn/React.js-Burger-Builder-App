@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
+import { purchaseBurgerStart } from '../actions/orders'
 
 const initialState = {
 	orders: [],
@@ -6,7 +7,14 @@ const initialState = {
 }
 
 const orderReducer = (state = initialState, action) => {
-	switch (action.action) {
+	switch (action.type) {
+		case actionTypes.PURCHASE_BURGER_START: {
+			return {
+				...state,
+				loading: true,
+			}
+		}
+
 		case actionTypes.PURCHASE_BURGER_SUCCESS: {
 			const newOrder = {
 				...action.payload.orderData,
@@ -20,10 +28,9 @@ const orderReducer = (state = initialState, action) => {
 		}
 		case actionTypes.PURCHASE_BURGER_FAIL: {
 			return {
-        ...state,
-        loading: false,
-        
-      }
+				...state,
+				loading: false,
+			}
 		}
 
 		default:
