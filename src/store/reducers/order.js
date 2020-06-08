@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes'
-import { purchaseBurgerStart } from '../actions/orders'
 
 const initialState = {
 	orders: [],

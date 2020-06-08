@@ -287,7 +287,10 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(mapStateToProps)(withErrorHandler(ContactData, axios))
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withErrorHandler(ContactData, axios))
 
 /***
  * ! To use dispatch only with connect you use the following syntax:
