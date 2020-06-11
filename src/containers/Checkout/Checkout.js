@@ -5,11 +5,6 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actionCreators from '../../store/actions/index'
 class Checkout extends Component {
-	// Handles redirection to home upon successful order
-	componentDidMount() {
-		this.props.onInitPurchase()
-	}
-
 	checkoutCancelledHandler = () => {
 		this.props.history.goBack()
 	}
@@ -51,10 +46,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onInitPurchase: () => dispatch(actionCreators.purchaseInit()),
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
+export default connect(mapStateToProps)(Checkout)
