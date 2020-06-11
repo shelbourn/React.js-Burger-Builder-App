@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-orders'
 
+// Sync action creators
 export const purchaseBurgerSuccess = (id, orderData) => {
 	return {
 		type: actionTypes.PURCHASE_BURGER_SUCCESS,
@@ -26,6 +27,7 @@ export const purchaseBurgerStart = () => {
 	}
 }
 
+// async action creators
 export const purchaseBurger = (orderData) => {
 	return (dispatch) => {
 		dispatch(purchaseBurgerStart())
@@ -38,5 +40,12 @@ export const purchaseBurger = (orderData) => {
 			.catch((error) => {
 				dispatch(purchaseBurgerFail(error))
 			})
+	}
+}
+
+// Action creator for redirection upon successful order
+export const purchaseInit = () => {
+	return {
+		type: actionTypes.PURCHASE_INIT,
 	}
 }
