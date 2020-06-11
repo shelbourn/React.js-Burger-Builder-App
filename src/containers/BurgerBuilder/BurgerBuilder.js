@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 // We can omit the filename in the import below because index.js files are automatically
 // chosen if no file is specified
-import * as burgerBuilderActions from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 
 /***
  * ? STATEFUL COMPONENT/CONTAINER FOR BURGER BUILDER FUNCTIONALITY
@@ -58,6 +58,8 @@ class BurgerBuilder extends Component {
 	//? to the checkout page when the 'Checkout' button is clicked
 
 	purchaseCheckoutHandler = () => {
+		// Handles redirect to home upon successful order
+		this.props.onInitPurchase()
 		this.props.history.push('/checkout')
 	}
 
@@ -142,10 +144,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onIngredientAdded: (ingredName) =>
-			dispatch(burgerBuilderActions.addIngredient(ingredName)),
+			dispatch(actions.addIngredient(ingredName)),
 		onIngredientRemoved: (ingredName) =>
-			dispatch(burgerBuilderActions.removeIngredient(ingredName)),
-		onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+			dispatch(actions.removeIngredient(ingredName)),
+		onInitIngredients: () => dispatch(actions.initIngredients()),
+		onInitPurchase: () => dispatch(actions.purchaseInit()),
 	}
 }
 
