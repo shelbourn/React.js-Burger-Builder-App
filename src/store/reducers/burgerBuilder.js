@@ -73,6 +73,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
 				 * }
 				 *
 				 */
+				totalPrice: 4,
 				error: false,
 			}
 		}
