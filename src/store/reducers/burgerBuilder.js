@@ -58,21 +58,17 @@ const burgerBuilderReducer = (state = initialState, action) => {
 		case actionTypes.SET_INGREDIENTS: {
 			return {
 				...state,
-				ingredients: action.payload.ingredients,
-				/***
-				 * Currently, the order of ingredients rendered comes from the Firebase
-				 * ordering, which is alphabetical.
-				 *
-				 * Can manually order ingredients with:
-				 *
-				 * ingredients: {
-				 * lettuce: action.payload.ingredients.lettuce,
-				 * bacon: action.payload.ingredients.bacon,
-				 * cheese: action.payload.ingredients.cheese,
-				 * meat: action.payload.ingredients.meat,
-				 * }
-				 *
-				 */
+				// Firebase-ordered ingredients (alphabetical)
+				//* ingredients: action.payload.ingredients,
+
+				// Manually-ordered list of ingredients
+				ingredients: {
+					lettuce: action.payload.ingredients.lettuce,
+					bacon: action.payload.ingredients.bacon,
+					cheese: action.payload.ingredients.cheese,
+					meat: action.payload.ingredients.meat,
+				},
+
 				totalPrice: 4,
 				error: false,
 			}
