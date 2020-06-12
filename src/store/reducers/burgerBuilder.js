@@ -59,16 +59,16 @@ const burgerBuilderReducer = (state = initialState, action) => {
 			return {
 				...state,
 				// Firebase-ordered ingredients (alphabetical)
-				//* ingredients: action.payload.ingredients,
+				ingredients: action.payload.ingredients,
 
 				// Manually-ordered list of ingredients
-				ingredients: {
+				/* 	ingredients: {
 					lettuce: action.payload.ingredients.lettuce,
 					bacon: action.payload.ingredients.bacon,
 					cheese: action.payload.ingredients.cheese,
 					meat: action.payload.ingredients.meat,
 				},
-
+ */
 				totalPrice: 4,
 				error: false,
 			}
