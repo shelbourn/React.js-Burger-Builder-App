@@ -35,7 +35,8 @@ const order = (props) => {
 			<p>Order ID: {props.orderID}</p>
 			<p>Ingredients: {ingredientOutput}</p>
 			<p>
-				Price: <strong>USD ${props.price.toFixed(2)}</strong>
+				Price: <strong>USD ${props.price}</strong>{' '}
+				{/*Removed ${props.price.toFixed(2)} for now because Order.js doesn't use Redux yet */}
 			</p>
 		</div>
 	)
