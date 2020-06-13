@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes'
 import axios from '../../axios-orders'
 
-// Sync action creators
+// Sync action creators for burger purchase process
 export const purchaseBurgerSuccess = (id, orderData) => {
 	return {
 		type: actionTypes.PURCHASE_BURGER_SUCCESS,
@@ -27,7 +27,7 @@ export const purchaseBurgerStart = () => {
 	}
 }
 
-// async action creators
+// async action creators for burger purchase process
 export const purchaseBurger = (orderData) => {
 	return (dispatch) => {
 		dispatch(purchaseBurgerStart())
@@ -47,5 +47,50 @@ export const purchaseBurger = (orderData) => {
 export const purchaseInit = () => {
 	return {
 		type: actionTypes.PURCHASE_INIT,
+	}
+}
+
+// Sync action creators for fetching orders from server
+export const fetchOrdersSuccess = (orders) => {
+	return {
+		type: actionTypes.FETCH_ORDERS_SUCCESS,
+		payload: {
+			orders: orders,
+		},
+	}
+}
+
+export const fetchOrdersFail = (error) => {
+	return {
+		type: actionTypes.FETCH_ORDERS_FAIL,
+		error: error,
+	}
+}
+
+export const fetchOrdersStart = () => {
+	return {
+		type: actionTypes.FETCH_ORDERS_START,
+	}
+}
+
+// Async action creators for fetching orders from server
+export const fetchOrders = () => {
+	return (dispatch) => {
+		dispatch(fetchOrdersStart())
+		axios
+			.get('/orders.json')
+			.then((res) => {
+				const fetchedOrders = []
+				for (let key in res.data) {
+					fetchedOrders.push({
+						...res.data[key],
+						id: key,
+					})
+				}
+				dispatch(fetchOrdersSuccess(fetchedOrders))
+			})
+			.catch((err) => {
+				dispatch(fetchOrdersFail(err))
+			})
 	}
 }
