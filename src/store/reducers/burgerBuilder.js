@@ -1,5 +1,6 @@
 // Root Redux reducer
 import * as actionTypes from '../actions/actionTypes'
+import { updateObject } from '../utility'
 
 const initialState = {
 	ingredients: null,
@@ -31,17 +32,22 @@ const INGREDIENT_PRICES = {
 const burgerBuilderReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_INGREDIENT: {
-			return {
-				...state,
-				ingredients: {
-					//* Two-level-deep immutable state update
-					...state.ingredients,
-					[action.payload.ingredientName]:
-						state.ingredients[action.payload.ingredientName] + 1,
-				},
+			const updatedIngredient = {
+				[action.payload.ingredientName]:
+					state.ingredients[action.payload.ingredientName] + 1,
+			}
+			// Invoking function from utility.js
+			// Making code leaner using utility function
+			const updatedIngredients = updateObject(
+				state.ingredients,
+				updatedIngredient
+			)
+			const updatedState = {
+				ingredients: updatedIngredients,
 				totalPrice:
 					state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
 			}
+			return updateObject(state, updatedState)
 		}
 		case actionTypes.REMOVE_INGREDIENT: {
 			return {
