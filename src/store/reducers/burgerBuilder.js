@@ -1,6 +1,7 @@
 // Root Redux reducer
 import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../utility'
+import { act } from 'react-dom/test-utils'
 
 const initialState = {
 	ingredients: null,
@@ -16,70 +17,71 @@ const INGREDIENT_PRICES = {
 	bacon: 1.0,
 }
 
-/***
- * ? This syntax: [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] + 1
- * ? Dynamically sets the reducer to expect an action payload property named ingredientName
- * ? and then (in this case) updates that property's value by adding 1
- */
+// Separating reducer case logic from switch statement into separate function
+//? Makes seeing what case our reducer handles very clear
 
-/***
- * * In the action types below, you can set up a new action for the total price
- * * update, but using one action to update both ingredient quantity and price
- * * uses less code. Also, since adding and removing ingredients are the only actions
- * * that control price so it makes sense.
- */
+const addIngredient = (state, action) => {
+	const updatedIngredient = {
+		[action.payload.ingredientName]:
+			state.ingredients[action.payload.ingredientName] + 1,
+	}
+	// Invoking function from utility.js
+	// Making code leaner using utility function
+	const updatedIngredients = updateObject(state.ingredients, updatedIngredient)
+	const updatedState = {
+		ingredients: updatedIngredients,
+		totalPrice:
+			state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
+	}
+	return updateObject(state, updatedState)
+}
+
+const removeIngredient = (state, action) => {
+	// Original code not using the utility function
+	return {
+		...state,
+		ingredients: {
+			...state.ingredients,
+			[action.payload.ingredientName]:
+				state.ingredients[action.payload.ingredientName] - 1,
+		},
+		totalPrice:
+			state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
+	}
+}
+
+const setIngredients = (state, action) => {
+	return updateObject(state, {
+		ingredients: {
+			lettuce: action.payload.ingredients.lettuce,
+			bacon: action.payload.ingredients.bacon,
+			cheese: action.payload.ingredients.cheese,
+			meat: action.payload.ingredients.meat,
+		},
+
+		totalPrice: 4,
+		error: false,
+	})
+}
+
+const fetchIngredientsFailed = (state) => {
+	return updateObject(state, { error: true })
+}
 
 const burgerBuilderReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.ADD_INGREDIENT: {
-			const updatedIngredient = {
-				[action.payload.ingredientName]:
-					state.ingredients[action.payload.ingredientName] + 1,
-			}
-			// Invoking function from utility.js
-			// Making code leaner using utility function
-			const updatedIngredients = updateObject(
-				state.ingredients,
-				updatedIngredient
-			)
-			const updatedState = {
-				ingredients: updatedIngredients,
-				totalPrice:
-					state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
-			}
-			return updateObject(state, updatedState)
-		}
-		// Original code not using the utility function
-		case actionTypes.REMOVE_INGREDIENT: {
-			return {
-				...state,
-				ingredients: {
-					...state.ingredients,
-					[action.payload.ingredientName]:
-						state.ingredients[action.payload.ingredientName] - 1,
-				},
-				totalPrice:
-					state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
-			}
-		}
-		// Implementing utility function to lean code
-		case actionTypes.SET_INGREDIENTS: {
-			return updateObject(state, {
-				ingredients: {
-					lettuce: action.payload.ingredients.lettuce,
-					bacon: action.payload.ingredients.bacon,
-					cheese: action.payload.ingredients.cheese,
-					meat: action.payload.ingredients.meat,
-				},
+		case actionTypes.ADD_INGREDIENT:
+			return addIngredient(state, action)
 
-				totalPrice: 4,
-				error: false,
-			})
-		}
-		// Implementing utility function to lean code
-		case actionTypes.FETCH_INGREDIENTS_FAILED: {
-			return updateObject(state, { error: true })
-		}
+		case actionTypes.REMOVE_INGREDIENT:
+			return removeIngredient(state, action)
+
+		case actionTypes.SET_INGREDIENTS:
+			return setIngredients(state, action)
+
+		case actionTypes.FETCH_INGREDIENTS_FAILED:
+			return fetchIngredientsFailed(state)
+
 		default:
 			return state
 	}
