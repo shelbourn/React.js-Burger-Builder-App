@@ -1,7 +1,6 @@
 // Root Redux reducer
 import * as actionTypes from '../actions/actionTypes'
 import { updateObject } from '../utility'
-import { act } from 'react-dom/test-utils'
 
 const initialState = {
 	ingredients: null,
@@ -64,10 +63,13 @@ const setIngredients = (state, action) => {
 	})
 }
 
-const fetchIngredientsFailed = (state) => {
+const fetchIngredientsFailed = (state, action) => {
 	return updateObject(state, { error: true })
 }
 
+/****
+ * Burger Builder Reducer Switch-Case Start
+ */
 const burgerBuilderReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_INGREDIENT:
@@ -80,7 +82,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
 			return setIngredients(state, action)
 
 		case actionTypes.FETCH_INGREDIENTS_FAILED:
-			return fetchIngredientsFailed(state)
+			return fetchIngredientsFailed(state, action)
 
 		default:
 			return state
