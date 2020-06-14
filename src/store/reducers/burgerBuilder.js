@@ -49,6 +49,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
 			}
 			return updateObject(state, updatedState)
 		}
+		// Original code not using the utility function
 		case actionTypes.REMOVE_INGREDIENT: {
 			return {
 				...state,
@@ -61,13 +62,9 @@ const burgerBuilderReducer = (state = initialState, action) => {
 					state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
 			}
 		}
+		// Implementing utility function to lean code
 		case actionTypes.SET_INGREDIENTS: {
-			return {
-				...state,
-				// Firebase-ordered ingredients (alphabetical)
-				// ingredients: action.payload.ingredients,
-
-				// Manually-ordered list of ingredients
+			return updateObject(state, {
 				ingredients: {
 					lettuce: action.payload.ingredients.lettuce,
 					bacon: action.payload.ingredients.bacon,
@@ -77,13 +74,11 @@ const burgerBuilderReducer = (state = initialState, action) => {
 
 				totalPrice: 4,
 				error: false,
-			}
+			})
 		}
+		// Implementing utility function to lean code
 		case actionTypes.FETCH_INGREDIENTS_FAILED: {
-			return {
-				...state,
-				error: true,
-			}
+			return updateObject(state, { error: true })
 		}
 		default:
 			return state
