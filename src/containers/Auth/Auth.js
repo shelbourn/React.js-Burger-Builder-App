@@ -94,6 +94,7 @@ class Auth extends Component {
 		this.setState({ controls: updatedControls })
 	}
 
+	// Submitting a form reloads the page by default
 	submitHandler = (event) => {
 		event.preventDefault()
 		this.props.onAuth(this.state.controls.email, this.state.controls.password)
