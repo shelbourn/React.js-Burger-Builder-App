@@ -16,7 +16,7 @@ class Auth extends Component {
 				value: '',
 				validation: {
 					required: true,
-					isEmail: true,
+					validEmail: true,
 				},
 				validEntry: false,
 				userInteracted: false,
@@ -31,12 +31,65 @@ class Auth extends Component {
 				value: '',
 				validation: {
 					required: true,
-					minLength: 8,
+					minPassLength: 8,
 				},
 				validEntry: false,
 				userInteracted: false,
 			},
 		},
+	}
+
+	checkValidation = (value, rules) => {
+		let isValid = true
+
+		if (!rules) {
+			return true
+		}
+
+		if (rules.required) {
+			//* isValid will be truthy if value (after trim) is not equal to an empty string
+			isValid = value.trim() !== '' && isValid
+		}
+
+		if (rules.validEmail) {
+			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+			isValid = pattern.test(value) && isValid
+		}
+
+		if (rules.minZipLength) {
+			isValid = value.length >= rules.minZipLength && isValid
+		}
+
+		if (rules.maxZipLength) {
+			isValid = value.length <= rules.maxZipLength && isValid
+		}
+
+		if (rules.zipIsNumeric) {
+			const pattern = /^\d+$/
+			isValid = pattern.test(value) && isValid
+		}
+
+		if (rules.minPassLength) {
+			isValid = value.length >= rules.minPassLength && isValid
+		}
+
+		return isValid
+	}
+
+	inputChangedHandler = (event, controlName) => {
+		const updatedControls = {
+			...this.state.controls,
+			[controlName]: {
+				...this.state.controls[controlName],
+				value: event.target.value,
+				validEntry: this.checkValidation(
+					event.target.value,
+					this.state.controls[controlName].validation
+				),
+				userInteracted: true,
+			},
+		}
+		this.setState({ controls: updatedControls })
 	}
 
 	render() {
