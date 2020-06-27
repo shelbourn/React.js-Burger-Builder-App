@@ -76,6 +76,7 @@ class ContactData extends Component {
 					required: true,
 					minZipLength: 5,
 					maxZipLength: 5,
+					zipIsNumeric: true,
 				},
 				validEntry: false,
 				userInteracted: false,
@@ -102,7 +103,7 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEmail: '@.',
+					validEmail: true,
 				},
 				validEntry: false,
 				userInteracted: false,
@@ -170,7 +171,8 @@ class ContactData extends Component {
 
 		//% Valid email check
 		if (rules.validEmail) {
-			isValid = value.includes('@') && value.includes('.') && isValid
+			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+			isValid = pattern.test(value) && isValid
 		}
 
 		//% Valid zip length check
@@ -180,6 +182,12 @@ class ContactData extends Component {
 
 		if (rules.maxZipLength) {
 			isValid = value.length <= rules.maxZipLength && isValid
+		}
+
+		//% Valid zip data type check
+		if (rules.zipIsNumeric) {
+			const pattern = /^\d+$/
+			isValid = pattern.test(value) && isValid
 		}
 
 		return isValid
