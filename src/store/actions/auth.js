@@ -29,13 +29,13 @@ export const auth = (email, password) => {
 		dispatch(authStart())
 		// authData will be converted to JSON automatically by axios
 		const authData = {
-			email: email,
+			email: test,
 			password: password,
 			returnSecureToken: true,
 		}
 		axios
 			.post(
-				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE]',
+				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE',
 				authData
 			)
 			.then((response) => {
