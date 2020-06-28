@@ -44,9 +44,9 @@ export const auth = (email, password) => {
 				console.log(response)
 				dispatch(authSuccess(response.data))
 			})
-			.catch((err) => {
-				console.log(err)
-				dispatch(authFail(err))
+			.catch((error) => {
+				console.log(error)
+				dispatch(authFail(error))
 			})
 	}
 }
