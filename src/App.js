@@ -27,7 +27,8 @@ class App extends Component {
 					<Switch>
 						<Route path="/checkout" component={Checkout} />
 						<Route path="/orders" component={Orders} />
-						<Route path="/auth" component={Auth} />
+						<Route path="/create" component={Auth} />
+						<Route path="/login" component={Auth} />
 						<Route exact path="/" component={BurgerBuilder} />
 					</Switch>
 				</Layout>

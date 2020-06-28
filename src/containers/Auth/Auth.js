@@ -131,8 +131,9 @@ class Auth extends Component {
 			<div className={styles.Auth}>
 				<form onSubmit={this.submitHandler}>
 					{form}
-					<Button btnType="Success">SUBMIT</Button>
+					<Button btnType="Success">SIGN UP</Button>
 				</form>
+				<Button btnType="Danger">Have an account? SIGN IN</Button>
 			</div>
 		)
 	}
