@@ -95,9 +95,13 @@ class Auth extends Component {
 	}
 
 	// Submitting a form reloads the page by default
+	//! Must specify this.state.controls.email/password.value for Axios to work properly
 	submitHandler = (event) => {
 		event.preventDefault()
-		this.props.onAuth(this.state.controls.email, this.state.controls.password)
+		this.props.onAuth(
+			this.state.controls.email.value,
+			this.state.controls.password.value
+		)
 	}
 
 	render() {

@@ -26,13 +26,15 @@ export const authFail = (error) => {
 // Async Action Creators
 export const auth = (email, password) => {
 	return (dispatch) => {
-		dispatch(authStart())
 		// authData will be converted to JSON automatically by axios
 		const authData = {
-			email: test,
+			email: email,
 			password: password,
 			returnSecureToken: true,
 		}
+		//! dispatch must be called after authData is initialized or Axios will break
+		dispatch(authStart())
+		console.log(email, password)
 		axios
 			.post(
 				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE',
