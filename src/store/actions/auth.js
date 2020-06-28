@@ -24,7 +24,7 @@ export const authFail = (error) => {
 }
 
 // Async Action Creators
-export const auth = (email, password) => {
+export const auth = (email, password, userSignUp) => {
 	return (dispatch) => {
 		// authData will be converted to JSON automatically by axios
 		const authData = {
@@ -32,14 +32,17 @@ export const auth = (email, password) => {
 			password: password,
 			returnSecureToken: true,
 		}
+		let url =
+			'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE'
+		if (!userSignUp) {
+			url =
+				'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE'
+		}
 		//! dispatch must be called after authData is initialized or Axios will break
 		dispatch(authStart())
 		console.log(email, password)
 		axios
-			.post(
-				'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQ3O6w3AcxZON5y4F7XKsU11l8zdjgKkE',
-				authData
-			)
+			.post(url, authData)
 			.then((response) => {
 				console.log(response)
 				dispatch(authSuccess(response.data))
