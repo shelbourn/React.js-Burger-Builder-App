@@ -14,3 +14,8 @@
 		width: 500px;
 	}
 }
+
+.Error {
+	font-weight: bolder;
+	color: indianred;
+}

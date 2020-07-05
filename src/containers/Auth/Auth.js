@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
+import Spinner from '../../components/UI/Spinner/Spinner'
 import styles from './Auth.module.css'
 import * as actions from '../../store/actions/index'
 
@@ -123,7 +124,7 @@ class Auth extends Component {
 			})
 		}
 
-		const form = formElementsArray.map((formElement) => (
+		let form = formElementsArray.map((formElement) => (
 			<Input
 				key={formElement.id}
 				inputtype={formElement.config.elementType}
@@ -136,8 +137,52 @@ class Auth extends Component {
 			/>
 		))
 
+		if (this.props.loading) {
+			form = <Spinner />
+		}
+
+		// Fina a was to show a modal with the error.
+		// This is a temporary solution
+		let errorMessage = null
+		if (this.props.error) {
+			switch (this.props.error.message) {
+				case 'EMAIL_EXISTS':
+					errorMessage = 'This email address already exists. Try signing in.'
+					break
+
+				case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+					errorMessage =
+						'There have been too many attempts to login. Please try again later.'
+					break
+
+				case 'EMAIL_NOT_FOUND':
+					errorMessage =
+						'This email was not found. Please sign up for an account.'
+					break
+
+				case 'INVALID_PASSWORD':
+					errorMessage =
+						'The password you entered is incorrect. Please try again.'
+					break
+
+				case 'USER_DISABLED':
+					errorMessage =
+						'Sorry, but your account has been disabled by the administrator. Please contact us for more information.'
+					break
+
+				default:
+					errorMessage = this.props.error.message
+					break
+			}
+		}
+
+		// if (this.props.error) {
+		// 	errorMessage = <p>{this.props.error.message}</p>
+		// }
+
 		return (
 			<div className={styles.Auth}>
+				<div className={styles.Error}>{errorMessage}</div>
 				<form onSubmit={this.submitHandler}>
 					{form}
 					<Button btnType="Success">
@@ -152,6 +197,14 @@ class Auth extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		// Must access auth reducer for the loading prop
+		loading: state.auth.loading,
+		error: state.auth.error,
+	}
+}
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onAuth: (email, password, userSignUp) =>
@@ -159,4 +212,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)
