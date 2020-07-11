@@ -4,17 +4,32 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter } from 'react-router-dom'
-import { createStore, combineReducers } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import reduxReducer from './store/reducer'
+import thunk from 'redux-thunk'
+import burgerBuilderReducer from './store/reducers/burgerBuilder'
+import orderReducer from './store/reducers/order.js'
+import authReducer from './store/reducers/auth'
 
-const reduxStore = createStore(reduxReducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+// Combining reducers
+const rootReducer = combineReducers({
+	burgerBuilder: burgerBuilderReducer,
+	order: orderReducer,
+	auth: authReducer,
+})
+
+// Enabling Redux DevTools and Redux-Thunk
+const reduxStore = createStore(
+	rootReducer,
+	composeEnhancers(applyMiddleware(thunk))
+)
 
 //* Can change the <App /> element below to another component that you
 //* want to be the root component
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <Provider> should wrap all other components */}
 		<Provider store={reduxStore}>
 			<BrowserRouter>
 				<App />

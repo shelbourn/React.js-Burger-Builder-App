@@ -5,6 +5,8 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import { connect } from 'react-redux'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import * as orderActions from '../../../store/actions/index'
 
 //* elementConfig property stores the default html properties which are then
 //* passsed as props to the component
@@ -74,6 +76,7 @@ class ContactData extends Component {
 					required: true,
 					minZipLength: 5,
 					maxZipLength: 5,
+					zipIsNumeric: true,
 				},
 				validEntry: false,
 				userInteracted: false,
@@ -100,7 +103,7 @@ class ContactData extends Component {
 				value: '',
 				validation: {
 					required: true,
-					validEmail: '@.',
+					validEmail: true,
 				},
 				validEntry: false,
 				userInteracted: false,
@@ -118,7 +121,6 @@ class ContactData extends Component {
 				validEntry: true,
 			},
 		},
-		loading: false,
 		formIsValid: false,
 	}
 
@@ -131,7 +133,6 @@ class ContactData extends Component {
 
 		//? Submitting order to server via http request
 		alert('Deliciousness is on its way!')
-		this.setState({ loading: true })
 
 		//% Maps the keys in orderForm to the values entered by the user
 		//% and then stores the key/value pairs in the formData object
@@ -146,15 +147,8 @@ class ContactData extends Component {
 			price: this.props.totPrice,
 			orderData: formData,
 		}
-		axios
-			.post('/orders.json', order)
-			.then((response) => {
-				this.setState({ loading: false })
-				this.props.history.push('/')
-			})
-			.catch((error) => {
-				this.setState({ loading: false })
-			})
+
+		this.props.onOrderBurger(order)
 	}
 
 	//? Validating user input
@@ -177,7 +171,8 @@ class ContactData extends Component {
 
 		//% Valid email check
 		if (rules.validEmail) {
-			isValid = value.includes('@') && value.includes('.') && isValid
+			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+			isValid = pattern.test(value) && isValid
 		}
 
 		//% Valid zip length check
@@ -187,6 +182,12 @@ class ContactData extends Component {
 
 		if (rules.maxZipLength) {
 			isValid = value.length <= rules.maxZipLength && isValid
+		}
+
+		//% Valid zip data type check
+		if (rules.zipIsNumeric) {
+			const pattern = /^\d+$/
+			isValid = pattern.test(value) && isValid
 		}
 
 		return isValid
@@ -267,7 +268,7 @@ class ContactData extends Component {
 				</Button>
 			</form>
 		)
-		if (this.state.loading) {
+		if (this.props.loading) {
 			form = <Spinner />
 		}
 		return (
@@ -281,12 +282,23 @@ class ContactData extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		ingred: state.ingredients,
-		totPrice: state.totalPrice,
+		ingred: state.burgerBuilder.ingredients,
+		totPrice: state.burgerBuilder.totalPrice,
+		loading: state.order.loading,
 	}
 }
 
-export default connect(mapStateToProps)(ContactData)
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onOrderBurger: (orderData) =>
+			dispatch(orderActions.purchaseBurger(orderData)),
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withErrorHandler(ContactData, axios))
 
 /***
  * ! To use dispatch only with connect you use the following syntax:
