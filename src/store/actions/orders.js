@@ -74,11 +74,11 @@ export const fetchOrdersStart = () => {
 }
 
 // Async action creators for fetching orders from server
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
 	return (dispatch) => {
 		dispatch(fetchOrdersStart())
 		axios
-			.get('/orders.json')
+			.get('/orders.json?auth=' + token)
 			.then((res) => {
 				const fetchedOrders = []
 				for (let key in res.data) {
