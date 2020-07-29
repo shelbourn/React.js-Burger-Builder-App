@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './NavigationItems.module.css'
 import NavigationItem from './NavigationItem/NavigationItem'
+import { render } from '@testing-library/react'
 
 //* When passing props that only hold boolean values
 //* you do not need to pass active(props name)={true}
@@ -8,15 +9,23 @@ import NavigationItem from './NavigationItem/NavigationItem'
 
 //% <a href="/"></a> goes to root of application
 
-const navigationItems = (props) => (
-	<ul className={styles.NavigationItems}>
-		<NavigationItem link="/" exactProp={true}>
-			Burger Builder
-		</NavigationItem>
-		<NavigationItem link="/orders">Orders</NavigationItem>
-		<NavigationItem link="/create">Create Account</NavigationItem>
-		<NavigationItem link="/login">Sign In</NavigationItem>
-	</ul>
-)
+const navigationItems = (props) => {
+	const isSignedIn = () => {
+		if (props.isAuthenticated) {
+			return <NavigationItem link="/logout">Sign Out</NavigationItem>
+		}
+		return <NavigationItem link="/login">Sign In</NavigationItem>
+	}
+
+	return (
+		<ul className={styles.NavigationItems}>
+			<NavigationItem link="/" exactProp={true}>
+				Burger Builder
+			</NavigationItem>
+			<NavigationItem link="/orders">Orders</NavigationItem>
+			{isSignedIn()}
+		</ul>
+	)
+}
 
 export default navigationItems
