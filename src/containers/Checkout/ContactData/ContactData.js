@@ -148,7 +148,7 @@ class ContactData extends Component {
 			orderData: formData,
 		}
 
-		this.props.onOrderBurger(order, token)
+		this.props.onOrderBurger(order, this.props.token)
 	}
 
 	//? Validating user input
