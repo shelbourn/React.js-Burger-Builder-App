@@ -28,11 +28,11 @@ export const purchaseBurgerStart = () => {
 }
 
 // async action creators for burger purchase process
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
 	return (dispatch) => {
 		dispatch(purchaseBurgerStart())
 		axios
-			.post('/orders.json', orderData)
+			.post('/orders.json?auth=' + token, orderData)
 			.then((response) => {
 				console.log(response.data)
 				dispatch(purchaseBurgerSuccess(response.data.name, orderData))
@@ -74,6 +74,7 @@ export const fetchOrdersStart = () => {
 }
 
 // Async action creators for fetching orders from server
+// Can also use getState() instead of accepting the token as a parameter
 export const fetchOrders = (token) => {
 	return (dispatch) => {
 		dispatch(fetchOrdersStart())
