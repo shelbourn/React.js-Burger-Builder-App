@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 // import withResponseHandler from '../../hoc/withResponseHandler/withResponseHandler'
 // import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
@@ -183,8 +184,14 @@ class Auth extends Component {
 		// 	errorMessage = <p>{this.props.error.message}</p>
 		// }
 
+		let authRedirect = null
+		if (this.props.isAuthenticated) {
+			authRedirect = <Redirect to="/" />
+		}
+
 		return (
 			<div className={styles.Auth}>
+				{authRedirect}
 				<div className={styles.Error}>{errorMessage}</div>
 				<form onSubmit={this.submitHandler}>
 					{form}
@@ -205,6 +212,7 @@ const mapStateToProps = (state) => {
 		// Must access auth reducer for the loading prop
 		loading: state.auth.loading,
 		error: state.auth.error,
+		isAuthenticated: state.auth.token !== null,
 	}
 }
 
