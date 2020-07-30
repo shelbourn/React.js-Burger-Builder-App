@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './NavigationItems.module.css'
 import NavigationItem from './NavigationItem/NavigationItem'
-import { render } from '@testing-library/react'
+// import { render } from '@testing-library/react'
 
 //* When passing props that only hold boolean values
 //* you do not need to pass active(props name)={true}

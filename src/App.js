@@ -5,6 +5,7 @@ import Checkout from './containers/Checkout/Checkout'
 import { Switch, Route } from 'react-router'
 import Orders from './containers/Orders/Orders'
 import Auth from './containers/Auth/Auth'
+import Logout from './containers/Auth/Logout/Logout'
 
 //? Components in the 'components' folder are 'dumb' or stateless components
 //* Components in the 'containers' folder are 'smart' or stateful components
@@ -29,7 +30,7 @@ class App extends Component {
 						<Route path="/orders" component={Orders} />
 						<Route path="/create" component={Auth} />
 						<Route path="/login" component={Auth} />
-						<Route path="/logout" component={BurgerBuilder} />
+						<Route path="/logout" component={Logout} />
 						<Route exact path="/" component={BurgerBuilder} />
 					</Switch>
 				</Layout>
